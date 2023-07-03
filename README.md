@@ -1,4 +1,4 @@
-# Flask Web App Tutorial
+# CampusPro Student Management System
 
 ## Setup & Installation
 
