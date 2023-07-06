@@ -1,22 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<div class="login-form">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<div class="admin-login-form">
   <form method="POST">
-    <h3 align="center">Login</h3>
+    <h3 align="center">Administrator Login</h3>
     <div class="form-group">
       <label for="email">Email Address</label>
       <input
         type="email"
-        class="form-control"
+        class="form-control" 
         id="email"
         name="email"
         placeholder="Enter email"
       />
     </div>
-    <form class="login-form {% if is_admin %}admin-login-form{% endif %}">
-      <!-- Login form content -->
-    </form>
+    <form class="login-form admin-login-form"></form>
     <div class="form-group">
       <label for="password">Password</label>
       <input

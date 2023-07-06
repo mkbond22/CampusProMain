@@ -57,4 +57,43 @@
       margin-top: 10px;
     }
   }
+
+  .login-form {
+    background-color: #2E8540;
+    padding: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .admin-login-form {
+    background-color: #FF6600;
+    padding: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .form-control {
+    width: 200px;
+  }
+
+  .form-box {
+    background-color: #2E8540;
+    padding: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+  }
+
+  .state-field {
+    margin-top: 40px;
+  }
+
+  h1 {
+    text-align:center;
+    color:#3F51B5
+  }
+  
   
