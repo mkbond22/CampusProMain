@@ -1,21 +1,46 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
-<h1 align="center">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
-  <li class="list-group-item">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
-  {% endfor %}
-</ul>
-<form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
-  <br />
-  <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
-  </div>
-</form>
+{% extends "_template_base.html" %}{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h1 align="center">Courses</h1>
+<div class="container">
+  <ul class="list-group list-group-flush" id="courses">
+
+    <!-- Could potentially use this to make the class thumbnails with list of cards -->
+    
+    {% for course in user.courses %}
+    <li class="list-group-item">
+      {{ course.id }}-{{ course.teacher }}
+      <br>
+      {{ course.description }} 
+      <br>
+      {{ course.year }}
+      <br>
+      <button type="button" class="close" onClick="deleteNote({{ course.id }})">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<br>
+<div class="container border border-success">
+  <form method="POST">
+    <h6>Course Code</h6>
+    <textarea name="course_id" id="course_id" class="form-control"></textarea>
+    <h6>Teacher</h6>
+    <textarea name="teacher" id="teacher" class="form-control"></textarea>
+    <h6>Course Description</h6>
+    <textarea name="course" id="course" class="form-control"></textarea>
+    <h6>Year</h6>
+    <textarea name="Year" id="Year" class="form-control"></textarea>
+    <br />
+    <div align="center">
+      <button type="submit" class="btn btn-primary">Add Course</button>
+    </div>
+    <br>
+  </form>
+</div>
+
+
 {% endblock %}

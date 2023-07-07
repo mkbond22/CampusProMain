@@ -1,7 +1,37 @@
-{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
-content %}
+<!-- 
+  TO RENDER TEMPLATES:
+    WE NEED TO USE THE RENDER_TEMPLATE FUNCTION IN OUR "VIEWS"/"AUTHENTICATION" .PY FILE OR WHATEVER
+    FILE WE ARE USING TO STORE THE ROUTES FOR THE DIFFERENT PAGES.
+-->
+
+{% extends "_template_base.html" %}{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+<br>
 <form method="POST">
   <h3 align="center">Sign Up</h3>
+  <br>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      name="firstName"
+      placeholder="Enter first name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastName"
+      name="lastName"
+      placeholder="Enter last name"
+    />
+  </div>
   <div class="form-group">
     <label for="email">Email Address</label>
     <input
@@ -13,13 +43,14 @@ content %}
     />
   </div>
   <div class="form-group">
-    <label for="firstName">First Name</label>
+    <label for="phone">Contact Number</label>
     <input
-      type="text"
+      type="tel"
       class="form-control"
-      id="firstName"
-      name="firstName"
-      placeholder="Enter first name"
+      id="phone"
+      name="phone"
+      placeholder="XXX-XXX-XXXX"
+      pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
     />
   </div>
   <div class="form-group">
@@ -42,7 +73,78 @@ content %}
       placeholder="Confirm password"
     />
   </div>
-  <br />
-  <button type="submit" class="btn btn-primary" style="background-color: #3F51B5; color: white;">Submit</button>
+  <br>
+  <h3 align="center">What is your role?</h3>
+  <div class="form-check text-center">
+    <input class="form-check-input" type="checkbox" name="student_box" value="1" id="student">
+    <label class="form-check-label" for="flexCheckDefault"><h5>Student</h5></label>
+  </div>
+  <div class="form-check text-center">
+    <input class="form-check-input" type="checkbox" name="teacher_box" value="2" id="teacher">
+    <label class="form-check-label" for="flexCheckDefault"><h5>Teacher</h5></label>
+  </div>
+  <div class="form-check text-center">
+    <input class="form-check-input" type="checkbox" name="parent_box" value="3" id="parent">
+    <label class="form-check-label" for="flexCheckDefault"><h5>Parent</h5></label>
+  </div>
+  <div class="form-check text-center">
+    <input class="form-check-input" type="checkbox" name="admin_box" value="0" id="admin">
+    <label class="form-check-label" for="flexCheckDefault"><h5>Administrator</h5></label>
+  </div>
+  <br>
+
+  <div class="card border-success mb-3">
+    <div class="card-title text-center">
+      <br>
+      <h5>Please read the terms and conditions and check the box below.</h5>
+    </div>
+    <div class="card-body text-success">
+      <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, ipsum voluptatem voluptatum 
+        rem molestiae illo quam, laudantium placeat reprehenderit eum dignissimos. 
+        Voluptate dolorum molestias tempore debitis, aspernatur maiores ipsa fugiat. Lorem ipsum dolor sit 
+        amet consectetur, adipisicing elit. Vero dolor perspiciatis sunt aspernatur praesentium optio obcaecati 
+        consectetur quaerat nisi? Quod at consequatur, adipisci iste laboriosam excepturi recusandae ipsa illo deleniti.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eaque voluptatum illo suscipit 
+        dignissimos nisi minima cum nihil porro, vero aliquam quia. Nam rem molestiae deleniti 
+        harum eius nemo nostrum.
+      </p>
+      <p class="card-text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis ut aspernatur laborum debitis 
+        vitae quia iusto quisquam, totam possimus. Aperiam, placeat animi tempore ab id voluptatem 
+        suscipit. Consequatur, ipsum non? Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur
+         adipisicing elit. Nihil ipsam, molestias saepe cum nostrum error sunt, aperiam ex eligendi deserunt 
+         corporis deleniti perferendis quaerat voluptatem officia officiis debitis eius voluptate! 
+         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium facere maiores nam aut 
+         voluptates ipsa reprehenderit delectus alias blanditiis doloribus magni adipisci inventore quis 
+         perferendis, iure quisquam, obcaecati eaque atque?
+      </p>
+      <p class="card-text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis ut aspernatur laborum debitis 
+        vitae quia iusto quisquam, totam possimus. Aperiam, placeat animi tempore ab id voluptatem 
+        suscipit. Consequatur, ipsum non? Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur
+         adipisicing elit. Nihil ipsam, molestias saepe cum nostrum error sunt, aperiam ex eligendi deserunt 
+         corporis deleniti perferendis quaerat voluptatem officia officiis debitis eius voluptate! 
+         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium facere maiores nam aut 
+         voluptates ipsa reprehenderit delectus alias blanditiis doloribus magni adipisci inventore quis 
+         perferendis, iure quisquam, obcaecati eaque atque? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+         Cupiditate possimus repellat officiis ipsum, beatae delectus culpa nisi? Nisi corporis dolores 
+         blanditiis! Delectus harum possimus earum, odit mollitia necessitatibus doloribus sit.
+      </p>
+    </div>
+    <div class="form-check text-center">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">I have read the terms and conditions.</label>
+    </div>
+    <br>
+  </div>
+  <br>
+  <div class="btn">
+    <button type="submit" class="btn btn-primary" style="background-color: #3F51B5; color: white;">Submit</button>
+  </div>
+  <br>
+  <br>
+  <br>
 </form>
+
+
 {% endblock %}
