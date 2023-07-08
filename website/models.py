@@ -48,7 +48,8 @@ ID | First Name | Last Name | Email | Phone Number | Password | Permissions ENUM
             ("Joe", "Mama", "j.mama@cpro.edu", 8593215609, "pa456ss", 1),
             ("Mary", "Jane", "m.jane@cpro.edu", 5734837719, "6pass54", 2),
             ("Shawn", "Knight", "s.knight@cpro.edu", 859458989, "45pass6", 1),
-            ("Steffany", "Lacy", "s.lacy@cpro.edu", 5736714812, "12pass3", 3)]
+            ("Steffany", "Lacy", "s.lacy@cpro.edu", 5736714812, "12pass3", 3),
+            ("Greg", "Jones", "g.jones@cpro.edu", 8598937081, "789pass", 3)]
 
         db.session.bulk_save_objects(user_list)
         db.session.commit()

@@ -38,15 +38,15 @@ def login():
                     print("Permissions = ", user.permissions, ". UserID = ", id)
                     return redirect(url_for('views.student_dash'))
                 elif user.permissions == 2:
-                    flash('Student Login Successful!', category='success')
+                    flash('Faculty Login Successful!', category='success')
                     login_user(user, remember=True)
                     print("Permissions = ", user.permissions, ". UserID = ", id)
-                    return redirect(url_for('views.home'))
+                    return redirect(url_for('views.faculty_dash'))
                 elif user.permissions == 3:
                     flash('Parent/Guardian Login Successful!', category='success')
                     login_user(user, remember=True)
                     print("Permissions = ", user.permissions, ". UserID = ", id)
-                    return redirect(url_for('views.home'))
+                    return redirect(url_for('views.parent_guardian_dash'))
                 else:
                     flash('Invalid permissions, please call an administrator.', category='error')
                     print("Permissions = ", user.permissions, ". UserID = ", user.id, "email = ", user.email)
@@ -104,14 +104,14 @@ def sign_up():
             login_user(new_user, remember=True)
             flash('Account created! Welcome New Student!', category='success')
             return redirect(url_for('views.student_dash'))
-        elif request.form.get('teacher_box') is not None:
-            permissions=request.form.get('teacher_box')
+        elif request.form.get('faculty_box') is not None:
+            permissions=request.form.get('faculty_box')
             new_user = User(first_name=first_name, last_name=last_name, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('Account created! Welcome Faculty!', category='success')
-            return redirect(url_for('views.home'))
+            flash('Account created! Welcome New Faculty Member!', category='success')
+            return redirect(url_for('views.faculty_dash'))
         elif request.form.get('parent_box') is not None:
             permissions=request.form.get('parent_box')
             new_user = User(first_name=first_name, last_name=last_name, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
@@ -119,7 +119,7 @@ def sign_up():
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created! Welcome Parents and Family!', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.parent_guardian_dash'))
         elif request.form.get('admin_box') is not None:
             permissions=request.form.get('admin_box')
             new_user = User(first_name=first_name, last_name=last_name, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)

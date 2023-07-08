@@ -66,10 +66,10 @@ def student_grades():
 
 
 ################################     Admin Pages     ################################
-@views.route('_template_admin.html')
+@views.route('/admin')
 @login_required
 def admin():
-    return render_template("admin.html")
+    return render_template("_template_admin.html", user=current_user)
 
 
 @views.route('/admin/dash')
@@ -83,4 +83,30 @@ def admin_dash():
 def admin_manage_users():
     users = User.query.all()
     return render_template("admin_manage_users.html", users=users)
+
+
+################################     Faculty Pages     ################################
+@views.route('/faculty')
+@login_required
+def faculty():
+    return render_template("_template_faculty.html")
+
+
+@views.route('/faculty/teacher-dash')
+@login_required
+def faculty_dash():
+    return render_template("teach_dashboard.html")
+
+
+################################     Parent/Guardian Pages     ################################
+@views.route('/guardian')
+@login_required
+def parent_guardian():
+    return render_template("_template_parent.html")
+
+
+@views.route('/parent-guardian/dash')
+@login_required
+def parent_guardian_dash():
+    return render_template("par-guard_dashboard.html")
 
