@@ -69,12 +69,15 @@ def student_grades():
 @views.route('/admin')
 @login_required
 def admin():
-    return render_template("_template_admin.html", user=current_user)
+    id = current_user.id
+    user = User.query.get(id)
+    return render_template("_template_admin.html", user=user)
 
 
 @views.route('/admin/dash')
 @login_required
 def admin_dash():
+    #user = User.query.get(current_user)
     return render_template("admin_dashboard.html")
 
 
