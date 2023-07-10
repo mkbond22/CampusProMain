@@ -1,0 +1,90 @@
+
+{% extends "_template_admin.html" %}{% block title %}Manage Users{% endblock %}
+
+{% block content %}
+
+<h1>Manage Users Page</h1>
+<p>
+  SHOULD DISPLAY ALL USERS IN THE DATABASE AND PROVIDE SORTING OPTIONS BY USER-TYPE, AND SEARCH OPTIONS BY NAME OR USER ID.
+</p>
+<br>
+<div class="container-fluid" align="center">
+  <table align="center"class="table table-hover table-dark table-bordered border border-success text-center">
+    <thead>
+      <tr class="bg-success text-dark">
+        <th scope="col">UserID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email Address</th>
+        <th scope="col">Password</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">User Permissions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+          <th scope="col">{{user.id}}</th>
+          <th scope="col">{{user.first_name}}</th>
+          <th scope="col">{{user.last_name}}</th>
+          <th scope="col">{{user.email}}</th>
+          <th scope="col">{{user.password}}</th>
+          <th scope="col">{{user.phone_number}}</th>
+          <th scope="col">{{user.permissions}}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br>
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <!-- IMAGE CARD WITH TEXT, LINK, AND BUTTON -->
+            <div class="card">
+                <img class="card-img-top" src="" alt="">
+
+                <div class="card-body">
+                    <h5 class="card-title">BIO101</h5>
+                    <p class="card-text">
+                        Some quick example text to build on 
+                        the card title and make up the bulk 
+                        of the card's content.
+                    </p>
+
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        Card link
+                    </a>
+                    <a href="#" class="btn btn-outline-secondary btn-sm">
+                        <i class="far fa-heart"></i></a>
+                </div>
+            </div>
+        </div>
+          <!-- IMAGE CARD WITH ONLY TEXT -->
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">MAT111</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <!-- TEXT CARD WITH TITLE, SUBTITLE, AND LINK -->
+        <!-- WIDTH SPECIFIED ""style="width: 18rem;"" -->
+        <div class="col-lg-6 mb-4">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">ENG112</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+        </div>  
+    </div>
+  </div>
+
+{% endblock %}
+
