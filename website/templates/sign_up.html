@@ -1,40 +1,254 @@
-{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
-content %}
+
+{% extends "_template_base.html" %} {% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+<br>
 <form method="POST">
   <h3 align="center">Sign Up</h3>
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      placeholder="Enter email"
-    />
-  </div>
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="firstName"
-      name="firstName"
-      placeholder="Enter first name"
-    />
-  </div>
-  <div class="col-md-4">
-    <label for="validationCustom05" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="validationCustom05" required>
-    <div class="invalid-feedback">
-      Please provide a valid zip.
+  <br>
+  <div class="container col-9 border border-success rounded py-3 px-0">
+    <div class="row gx-3 mx-0 justify-content-md-center">
+      <div class="col-md-3 form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          name="firstName"
+          placeholder="Enter first name"
+        />
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          name="lastName"
+          placeholder="Enter last name"
+        />
+      </div>
+    </div>
+
+    <div class="container col-8 px-0">
+      <div class="row gx-3 justify-content-md-center">
+        <div class="col-md-9">
+          <label for="validationCustom05" class="form-label">Street Address</label>
+          <input 
+            type="text"
+            class="form-control" 
+            id="validationCustom05"
+            placeholder="Enter Street Address">
+          <div class="invalid-feedback">
+            Street Address
+          </div>
+        </div>
+      </div>
+      <div class="row g-2 ml-auto justify-content-md-center">
+        <div class="col-md-3 ml-auto">
+          <label for="validationCustom05" class="form-label">City</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="validationCustom05"
+            placeholder="Enter City">
+          <div class="invalid-feedback">
+            City
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationCustom05" class="form-label">Zip Code</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="validationCustom05"
+            placeholder="Enter Zip">
+          <div class="invalid-feedback">
+            Zip Code
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="state" class="col-sm-2 control-label">State</label>
+          <div class="col-sm-6">
+            <select class="form-control" id="state" name="state">
+              <option value="">N/A</option>
+              <option value="AK">Alaska</option>
+              <option value="AL">Alabama</option>
+              <option value="AR">Arkansas</option>
+              <option value="AZ">Arizona</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DC">District of Columbia</option>
+              <option value="DE">Delaware</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="IA">Iowa</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MD">Maryland</option>
+              <option value="ME">Maine</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MO">Missouri</option>
+              <option value="MS">Mississippi</option>
+              <option value="MT">Montana</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="NE">Nebraska</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NV">Nevada</option>
+              <option value="NY">New York</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="PR">Puerto Rico</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VA">Virginia</option>
+              <option value="VT">Vermont</option>
+              <option value="WA">Washington</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WV">West Virginia</option>
+              <option value="WY">Wyoming</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row gx-3 justify-content-md-center">
+      <div class="col-md-3 form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+        />
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="phone">Contact Number</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="phone"
+          name="phone"
+          placeholder="XXX-XXX-XXXX"
+          pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+        />
+      </div>
+    </div>
+    <div class="row gx-3 justify-content-md-center">
+      <div class="col-md-3 form-group">
+        <label for="password1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password1"
+          name="password1"
+          placeholder="Enter password"
+        />
+      </div>
+      <div class="col-md-3 form-group">
+        <label for="password2">Password (Confirm)</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password2"
+          name="password2"
+          placeholder="Confirm password"
+        />
+      </div>
     </div>
   </div>
-  <div class="col-12 mt-3"> <!-- Use col-12 class to make the button full width -->
-    <button class="btn btn-primary" type="submit" style="background-color: #3F51B5; color: white;">Submit form</button>
+  
+  <br>
+  <h3 align="center">What is your role?</h3>
+  <div class="form-check text-center">
+    <input class="form-check-input" type="checkbox" name="student_box" value="1" id="student">
+    <label class="form-check-label" for="flexCheckDefault"><h5>Student</h5></label>
   </div>
-  <br />
-  <button type="submit" class="btn btn-primary" style="background-color: #3F51B5; color: white;">Submit</button>
-</form>
+  <div class="form-check text-center">
+    <input class="form-check-input" type="checkbox" name="teacher_box" value="2" id="teacher">
+    <label class="form-check-label" for="flexCheckDefault"><h5>Teacher</h5></label>
+  </div>
+  <div class="form-check text-center">
+    <input class="form-check-input" type="checkbox" name="parent_box" value="3" id="parent">
+    <label class="form-check-label" for="flexCheckDefault"><h5>Parent</h5></label>
+  </div>
+  <div class="form-check text-center">
+    <input class="form-check-input" type="checkbox" name="admin_box" value="0" id="admin">
+    <label class="form-check-label" for="flexCheckDefault"><h5>Administrator</h5></label>
+  </div>
+  <br>
 
+  <div class="card border-success mb-3">
+    <div class="card-title text-center">
+      <br>
+      <h5>Please read the terms and conditions and check the box below.</h5>
+    </div>
+    <div class="card-body text-success">
+      <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, ipsum voluptatem voluptatum 
+        rem molestiae illo quam, laudantium placeat reprehenderit eum dignissimos. 
+        Voluptate dolorum molestias tempore debitis, aspernatur maiores ipsa fugiat. Lorem ipsum dolor sit 
+        amet consectetur, adipisicing elit. Vero dolor perspiciatis sunt aspernatur praesentium optio obcaecati 
+        consectetur quaerat nisi? Quod at consequatur, adipisci iste laboriosam excepturi recusandae ipsa illo deleniti.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eaque voluptatum illo suscipit 
+        dignissimos nisi minima cum nihil porro, vero aliquam quia. Nam rem molestiae deleniti 
+        harum eius nemo nostrum.
+      </p>
+      <p class="card-text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis ut aspernatur laborum debitis 
+        vitae quia iusto quisquam, totam possimus. Aperiam, placeat animi tempore ab id voluptatem 
+        suscipit. Consequatur, ipsum non? Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur
+         adipisicing elit. Nihil ipsam, molestias saepe cum nostrum error sunt, aperiam ex eligendi deserunt 
+         corporis deleniti perferendis quaerat voluptatem officia officiis debitis eius voluptate! 
+         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium facere maiores nam aut 
+         voluptates ipsa reprehenderit delectus alias blanditiis doloribus magni adipisci inventore quis 
+         perferendis, iure quisquam, obcaecati eaque atque?
+      </p>
+      <p class="card-text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis ut aspernatur laborum debitis 
+        vitae quia iusto quisquam, totam possimus. Aperiam, placeat animi tempore ab id voluptatem 
+        suscipit. Consequatur, ipsum non? Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur
+         adipisicing elit. Nihil ipsam, molestias saepe cum nostrum error sunt, aperiam ex eligendi deserunt 
+         corporis deleniti perferendis quaerat voluptatem officia officiis debitis eius voluptate! 
+         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium facere maiores nam aut 
+         voluptates ipsa reprehenderit delectus alias blanditiis doloribus magni adipisci inventore quis 
+         perferendis, iure quisquam, obcaecati eaque atque? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+         Cupiditate possimus repellat officiis ipsum, beatae delectus culpa nisi? Nisi corporis dolores 
+         blanditiis! Delectus harum possimus earum, odit mollitia necessitatibus doloribus sit.
+      </p>
+    </div>
+    <div class="form-check text-center">
+      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">I have read the terms and conditions.</label>
+    </div>
+    <br>
+  </div>
+  <br>
+  <div class="btn">
+    <button type="submit" class="btn btn-primary" style="background-color: #3F51B5; color: white;">Submit</button>
+  </div>
+  <br>
+  <br>
+  <br>
+</form>
 
 {% endblock %}

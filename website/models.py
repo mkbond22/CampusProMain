@@ -38,18 +38,19 @@ ID | First Name | Last Name | Email | Phone Number | Password | Permissions ENUM
 
 """
         user_list = [("Tyler", "Selby", "t.selby@cpro.edu", 8598018793, "123pass", 0),
-            ("Megan", "Bond", "m.bond@cpro.edu", 5734292338, "456pass", 0),
-            ("Jim", "Beam", "j.beam@cpro.edu", 8593751289, "pass456", 1),
-            ("Mary", "Poppins", "m.poppins@cpro.edu", 5734814889, "456pass", 1),
-            ("Jon", "Snow", "j.snow@cpro.edu", 8591230956, "p123ass", 1),
-            ("Isaac", "Newton", "i.newton@cpro.edu", 8593705989, "3pass21", 3),
-            ("Carly", "Nickles", "c.nickles@cpro.edu", 5737894321, "pa123ss", 2),
-            ("Gwen", "Stacey", "g.stacey@cpro.edu", 5736093383, "p456ass", 1),
-            ("Joe", "Mama", "j.mama@cpro.edu", 8593215609, "pa456ss", 1),
-            ("Mary", "Jane", "m.jane@cpro.edu", 5734837719, "6pass54", 2),
-            ("Shawn", "Knight", "s.knight@cpro.edu", 859458989, "45pass6", 1),
-            ("Steffany", "Lacy", "s.lacy@cpro.edu", 5736714812, "12pass3", 3),
-            ("Greg", "Jones", "g.jones@cpro.edu", 8598937081, "789pass", 3)]
+                    ("Megan", "Bond", "m.bond@cpro.edu", 5734292338, "456pass", 0),
+                    ("Jim", "Beam", "j.beam@cpro.edu", 8593751289, "pass456", 1),
+                    ("Mary", "Poppins", "m.poppins@cpro.edu", 5734814889, "456pass", 1),
+                    ("Jon", "Snow", "j.snow@cpro.edu", 8591230956, "p123ass", 1),
+                    ("Isaac", "Newton", "i.newton@cpro.edu", 8593705989, "3pass21", 3),
+                    ("Carly", "Nickles", "c.nickles@cpro.edu", 5737894321, "pa123ss", 2),
+                    ("Gwen", "Stacey", "g.stacey@cpro.edu", 5736093383, "p456ass", 1),
+                    ("Joe", "Mama", "j.mama@cpro.edu", 8593215609, "pa456ss", 1),
+                    ("Mary", "Jane", "m.jane@cpro.edu", 5734837719, "6pass54", 2),
+                    ("Shawn", "Knight", "s.knight@cpro.edu", 859458989, "45pass6", 1),
+                    ("Steffany", "Lacy", "s.lacy@cpro.edu", 5736714812, "12pass3", 3),
+                    ("Jen", "Morris", "j.morris@cpro.edu", 5731672184, "pass123word", 3),
+                    ("Greg", "Jones", "g.jones@cpro.edu", 8598937081, "789pass", 3)]
 
         db.session.bulk_save_objects(user_list)
         db.session.commit()
@@ -99,3 +100,6 @@ class Grades(db.Model):
     date_assigned = db.Column(db.DateTime(timezone=True), default=func.now())
     date_due = db.Column(db.DateTime(timezone=True))
     grade = db.Column(db.Integer)
+
+
+
