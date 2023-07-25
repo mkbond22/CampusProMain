@@ -2,7 +2,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
-from sqlalchemy import insert
+#from sqlalchemy import insert
 import enum
 
 

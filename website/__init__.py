@@ -1,11 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+#from flask_wtf import FlaskForm
+#from wtforms import StringField, SubmitField
+#from wtforms.validators import DataRequired
 from os import path
 from flask_login import LoginManager
-import mysql.connector
+#import mysql.connector
 
 # new_db = mysql.connector.connect(host="localhost", user="root", passwd="$C0de1sco0L!", database="testdatabase")
 # app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://root:$C0de1sco0L!@localhost/testdatabase'

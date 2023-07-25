@@ -4,12 +4,12 @@ FILE TO STORE THE ROUTES/DIFFERENT PAGES THE USER CAN NAVIGATE TO.
 
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, SubmitField
+# from wtforms.validators import DataRequired
 from .models import User, Course
-from sqlalchemy.inspection import inspect
-from sqlalchemy import MetaData
+# from sqlalchemy.inspection import inspect
+# from sqlalchemy import MetaData
 from . import db
 import json
 
