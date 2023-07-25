@@ -70,6 +70,10 @@ def sign_up():
     if request.method == 'POST':
         first_name = request.form.get('firstName')
         last_name = request.form.get('lastName')
+        address = request.form.get('address')
+        city = request.form.get('city')
+        zip_code = request.form.get('zip_code')
+        state = request.form.get('state')
         email = request.form.get('email')
         phone_number = request.form.get('phone')
         password1 = request.form.get('password1')
@@ -98,7 +102,7 @@ def sign_up():
 
         if request.form.get('student_box') is not None:
             permissions=request.form.get('student_box')
-            new_user = User(first_name=first_name, last_name=last_name, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
+            new_user = User(first_name=first_name, last_name=last_name,address=address, city=city, zip_code=zip_code, state=state, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -106,7 +110,7 @@ def sign_up():
             return redirect(url_for('views.student_dash'))
         elif request.form.get('faculty_box') is not None:
             permissions=request.form.get('faculty_box')
-            new_user = User(first_name=first_name, last_name=last_name, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
+            new_user = User(first_name=first_name, last_name=last_name,address=address, city=city, zip_code=zip_code, state=state, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -114,7 +118,7 @@ def sign_up():
             return redirect(url_for('views.faculty_dash'))
         elif request.form.get('parent_box') is not None:
             permissions=request.form.get('parent_box')
-            new_user = User(first_name=first_name, last_name=last_name, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
+            new_user = User(first_name=first_name, last_name=last_name,address=address, city=city, zip_code=zip_code, state=state, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -122,7 +126,7 @@ def sign_up():
             return redirect(url_for('views.parent_guardian_dash'))
         elif request.form.get('admin_box') is not None:
             permissions=request.form.get('admin_box')
-            new_user = User(first_name=first_name, last_name=last_name, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
+            new_user = User(first_name=first_name, last_name=last_name,address=address, city=city, zip_code=zip_code, state=state, email=email, phone_number=phone_number, password=generate_password_hash(password1, method='sha256'), permissions=permissions)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)

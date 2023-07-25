@@ -88,6 +88,13 @@ def admin_manage_users():
     return render_template("admin_manage_users.html", users=users)
 
 
+@views.route('/admin/manage_courses')
+@login_required
+def admin_manage_courses():
+    courses = Course.query.all()
+    return render_template("admin_manage_courses.html", courses=courses)
+
+
 ################################     Faculty Pages     ################################
 @views.route('/faculty')
 @login_required

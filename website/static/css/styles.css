@@ -112,6 +112,7 @@
   table.table-bordered{
     border:1px solid #fd7e14;
     margin-top:20px;
+    padding: 0px;
   }
   table.table-bordered > thead > tr > th{
       border:1px solid #fd7e14;
@@ -119,5 +120,45 @@
   table.table-bordered > tbody > tr > td{
       border:1px solid #fd7e14;
   }
-  
+
+  .course-table-bordered{
+    border:1px solid #2E8540;
+    margin-top:20px;
+    padding: 0px;
+  }
+  .course-table-bordered > thead > tr > th{
+    border:1px solid #2E8540;
+  }
+  .course-table-bordered > tbody > tr > td{
+    border:1px solid #2E8540;
+  }
+
+  .heading-color {
+    background-color: #fd7e14;
+  }
+
+  .add-course-form {
+    columns: 4;
+    height: 200px !important;
+    background-color: lightgrey;
+    border:1px solid #fd7e14;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: -100px;
+  }
+
+  .dropdown-button {
+    margin-bottom: 10px;
+  }
+
+  .add-button {
+    background-color: #fd7e14;
+    border:1px solid #2E8540;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .bottom-space {
+    margin-bottom: 100px;
+  }
+
   
