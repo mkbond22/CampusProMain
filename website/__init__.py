@@ -35,6 +35,9 @@ def create_app():
     # from .sql_db import Users
 
     with app.app_context():
+        #query = f'ALTER TABLE {Course} ADD gender ENUM("m","f") ;'
+        query = Course.query.all()
+        print(query)
         db.create_all()
 
     login_manager = LoginManager()

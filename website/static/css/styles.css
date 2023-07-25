@@ -1,11 +1,3 @@
-.login-box {
-    background-color: #2E8540;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-    color: #ffffff;
-    width: 300px;
-  }
   
   .navbar {
     background-color: #2E8540;
@@ -60,6 +52,15 @@
       margin-top: 10px;
     }
   }
+
+  .login-box {
+    background-color: #2E8540;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    width: 300px;
+  }
   
   .admin-login-form {
     background-color: #FF6600;
@@ -108,8 +109,15 @@
     margin-left: 10px;
   }
 
-  .user-table {
-    max-width: 1000px;
+  table.table-bordered{
+    border:1px solid #fd7e14;
+    margin-top:20px;
+  }
+  table.table-bordered > thead > tr > th{
+      border:1px solid #fd7e14;
+  }
+  table.table-bordered > tbody > tr > td{
+      border:1px solid #fd7e14;
   }
   
   

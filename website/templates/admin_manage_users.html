@@ -10,7 +10,7 @@
 <br>
 <div class="container mx-auto">
   <div class="d-flex justify-content-center">
-    <table align="center"class="table table-hover table-dark table-bordered border border-success text-center">
+    <table align="center"class="table table-hover table-dark table-bordered text-center">
       <thead>
         <tr class="bg-success text-dark">
           <th scope="col">UserID</th>
@@ -25,7 +25,7 @@
       </thead>
       <tbody>
           {% for user in users %}
-          <tr>
+          <tr class="table-bordered">
             <th scope="col">{{user.id}}</th>
             <th scope="col">{{user.first_name}}</th>
             <th scope="col">{{user.last_name}}</th>
@@ -33,7 +33,8 @@
             <th scope="col">{{user.password}}</th>
             <th scope="col">{{user.phone_number}}</th>
             <th scope="col">{{user.permissions}}</th>
-            <th scope="col"><span aria-hidden="true">&times;</span></th>
+            <th scope="col" href="#" style="color: #fd7e14;">
+              <span aria-hidden="true">&times;</span></th>
           </tr>
           {% endfor %}
       </tbody>

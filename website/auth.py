@@ -4,7 +4,7 @@ from .models import User
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
-import mysql.connector
+#import mysql.connector
 from flask_login import login_user, login_required, logout_user, current_user
 #from flask_wtf import FlaskForm
 #from wtforms import StringField, SubmitField, PasswordField, FormField

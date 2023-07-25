@@ -82,9 +82,12 @@ class User(db.Model, UserMixin):
 
 class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(100))
+    #course_code = db.Column(bd.String(10), unique=True)
+    #section = db.Column(bd.Character)
+    description = db.Column(db.String(100)) #DELETE COLUMN
     teacher = db.Column(db.String(50))
     year = db.Column(db.DateTime(timezone=True), default=func.now())
+    # year/semester = db.Column(db.String(10))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # The second 'user.id' is referencing the User table - matching it to 'user_id' in the courses table
 
     """
