@@ -3,16 +3,16 @@
 
 {% block content %}
 
-<h1>Manage Users Page</h1>
-<p>
+<h1 class="page-title">Manage Users Page</h1>
+<p class="h4 page-subtitle">
   SHOULD DISPLAY ALL USERS IN THE DATABASE AND PROVIDE SORTING OPTIONS BY USER-TYPE, AND SEARCH OPTIONS BY NAME OR USER ID.
 </p>
 <br>
 <div class="container mx-auto">
   <div class="d-flex justify-content-center">
-    <table align="center"class="table table-sm table-hover table-dark table-bordered text-center">
+    <table id="data-table" class="table table-sm">
       <thead>
-        <tr class="bg-success text-dark">
+        <tr>
           <th scope="col">UserID</th>
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
@@ -29,25 +29,22 @@
       </thead>
       <tbody>
           {% for user in users %}
-          <tr class="table-bordered">
-            <th scope="col"><h6>{{user.id}}</h6></th>
-            <th scope="col"><h6>{{user.first_name}}</h6></th>
-            <th scope="col"><h6>{{user.last_name}}</h6></th>
-            <th scope="col" class="text-nowrap"><h6>{{user.address}}</h6></th>
-            <th scope="col"><h6>{{user.city}}</h6></th>
-            <th scope="col"><h6>{{user.zip_code}}</h6></th>
-            <th scope="col"><h6>{{user.state}}</h6></th>
-            <th scope="col"><h6>{{user.email}}</h6></th>
-            <th scope="col" class="text-wrap"><h6>{{user.password}}</h6></th>
-            <th scope="col"><h6></h6>{{user.phone_number}}</th>
-            <th scope="col" class="px-0"><h6>{{user.permissions}}</h6></th>
-            <th scope="col" style="color: #fd7e14;">
+          <tr>
+            <td><h6>{{user.id}}</h6></td>
+            <td><h6>{{user.first_name}}</h6></td>
+            <td><h6>{{user.last_name}}</h6></td>
+            <td class="text-nowrap"><h6>{{user.address}}</h6></td>
+            <td><h6>{{user.city}}</h6></td>
+            <td><h6>{{user.zip_code}}</h6></td>
+            <td><h6>{{user.state}}</h6></td>
+            <td><h6>{{user.email}}</h6></td>
+            <td class="text-wrap"><h6>{{user.password}}</h6></td>
+            <td><h6></h6>{{user.phone_number}}</th>
+            <td class="px-0"><h6>{{user.permissions}}</h6></td>
+            <td style="color: #fd7e14;">
               <a href="/admin/dash" style="color: #fd7e14;"><span aria-hidden="true"><h2>&#10253;</h2></span></a> <!-- "more" in braille -->
-            </th>
+            </td>
           </tr>
-          <!-- &#9072; -->
-          <!-- &#8943; -->
-          
           {% endfor %}
       </tbody>
     </table>

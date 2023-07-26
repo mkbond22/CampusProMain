@@ -3,16 +3,16 @@
 
 {% block content %}
 
-<h1>Manage Courses Page</h1>
-<p>
-  SHOULD DISPLAY ALL USERS IN THE DATABASE AND PROVIDE SORTING OPTIONS BY USER-TYPE, AND SEARCH OPTIONS BY NAME OR USER ID.
+<h2 class="page-title">Manage Courses Page</h2>
+<p class="h4 page-subtitle">
+  Display all the courses that are currently active. Gives admin the ability to add, delete, and update courses.
 </p>
-<br>
+
 <div class="container mx-auto">
   <div class="d-flex justify-content-center">
-    <table align="center"class="table table-sm table-hover table-dark course-table-bordered text-center">
+    <table id="data-table" class="table table-sm">
       <thead>
-        <tr class="heading-color text-dark">
+        <tr>
           <th scope="col">Course ID</th>
           <th scope="col">Course Name</th>
           <th scope="col">Course Abbreviation</th>
@@ -25,21 +25,18 @@
       </thead>
       <tbody>
           {% for course in courses %}
-          <tr class="table-bordered">
-            <th scope="col"><h6>{{course.id}}</h6></th>
-            <th scope="col"><h6>{{course.course_name}}</h6></th>
-            <th scope="col"><h6>{{course.course_abbr}}</h6></th>
-            <th scope="col"><h6>{{course.section}}</h6></th>
-            <th scope="col"><h6>{{course.course_code}}</h6></th>
-            <th scope="col"><h6>{{course.teacher}}</h6></th>
-            <th scope="col" class="text-nowrap"><h6>{{course.year}}</h6></th>
-            <th scope="col" class="text-success">
+          <tr>
+            <td><h6>{{course.id}}</h6></td>
+            <td><h6>{{course.course_name}}</h6></td>
+            <td><h6>{{course.course_abbr}}</h6></td>
+            <td><h6>{{course.section}}</h6></td>
+            <td><h6>{{course.course_code}}</h6></td>
+            <td><h6>{{course.teacher}}</h6></td>
+            <td><h6>{{course.year}}</h6></td>
+            <td class="text-success">
               <a href="/admin/dash" class="text-success"><span aria-hidden="true"><h2>&#10253;</h2></span></a> <!-- "more" in braille -->
-            </th>
+            </td>
           </tr>
-          <!-- &#9072; -->
-          <!-- &#8943; -->
-          
           {% endfor %}
       </tbody>
     </table>
@@ -112,7 +109,7 @@
               </div>
             </div>
           </div>
-  
+        </div>
         </form>
         <div class="dropdown-divider"></div>
         <div class="row gx-3 justify-content-md-center">
@@ -127,12 +124,11 @@
         </div>
         <button type="submit" class="btn add-button">Add Course</button>
         <br>
-        </div>
-        
-    </div>
+      </div>
   </div>
 </div>
 <br>
+<div class="container bottom-space"></div>
 
 
 {% endblock %}
