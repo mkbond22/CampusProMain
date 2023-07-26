@@ -1,11 +1,58 @@
   
+  /* ~~~~~~~~~~~~~  Navbar CSS Styles  ~~~~~~~~~~~~~ */
+
+  #grad {
+    background-image: linear-gradient(55deg, #3F51B5, #2E8540, #FF6600);
+  }
+  l1:hover, a:hover {
+    font-size: 150%;
+    font-family: cursive;
+    font-weight: bold;
+    font-stretch: extra-condensed;
+    line-height: 65px;
+    text-transform: uppercase;
+    text-shadow: 3px 1px 5px #000, 4px 2px 5px #fff, 3px 1px 4px #ebdd17;
+    -webkit-text-stroke: 1px #000;
+  }
+
   .navbar {
-    background-color: #2E8540;
+    width: 100%;
+    font-family: "Montserrat", "Arial", sans-serif;
+    font-size: 25px;
+    line-height: 35px;
+    font-weight: bold;
+    text-shadow: 3px 1px 4px #000, 2px 0 2px #fff;
+    white-space: nowrap;
+    padding: 0;
+  }
+  .container1 {
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    justify-items: left;
+  }
+  .container2 {
+    width: 100%;
+    margin-right: 40px;
+    padding-right: 20px;
+    justify-items: right;
+  }
+  .container3 {
+    width: 100%;
+    margin: 0px;
+    justify-items: center;
   }
   
   .navbar-brand {
     display: flex;
     align-items: center;
+  }
+
+  .profile-pic {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    margin-left: 0px;
   }
   
   .navbar-logo {
@@ -18,6 +65,9 @@
   
   .header-logo {
     height: 50px;
+  }
+  a.nav-link {
+    padding: 0px;
   }
   
   @media (max-width: 768px) {
@@ -106,38 +156,6 @@
     align-items: center;
   }
 
-  .profile-pic {
-    width: 50px;
-    height: 50px;
-    padding: 0;
-    margin-left: 10px;
-  }
-
-  .page-title {
-    font-size: 50px;
-    color: #fd7e14;
-    font-family: cursive;
-    margin: 10px 0px 20px;
-    text-transform: uppercase;
-    text-shadow: 0 0 5px #000, 3px 2px 5px #2E8540;
-    margin: 22px 0px 20px;
-    text-align: center;
-    line-height: 60px;
-    -webkit-text-stroke: 1px black;
-  }
-
-  .page-subtitle {
-    font-size: 28px;
-    letter-spacing: -1px;
-    color: #2E8540;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 3px #fd7e14;
-    margin: 15px 0px 5px;
-    text-align: center;
-    line-height: 38px;
-    -webkit-text-stroke: 1px black;
-  }
-
   .box1 {
     outline:2px solid #2E8540;
     border-top-left-radius: 6px;
@@ -151,24 +169,6 @@
     border-bottom-right-radius: 10px;
     padding: 10px;
     margin: 20px;
-  }
-
-  /* .course-table-bordered{
-    box-shadow: 2px 1px 6px #fff, 7px 5px 6px #2E8540;
-    margin-top:10px;
-    margin-bottom: 15px;
-    padding: 0px;
-  }
-  .course-table-bordered > thead > tr > th{
-    border:1px solid #2E8540;
-  }
-  .course-table-bordered > tbody > tr > td{
-    border:1px solid #2E8540;
-  } */
-
-  .heading-color {
-    background-color: #fd7e14;
-    outline:2px solid #2E8540;
   }
 
   .add-course-form {
@@ -205,11 +205,6 @@
     width: 100%;
     box-shadow: 2px 1px 6px #fff, 7px 5px 6px #2E8540;
   }
-  /* #data-table td, #data-table th {
-    margin-top:10px;
-    margin-bottom: 15px;
-    padding: 0px;
-  } */
   #data-table tr:nth-child(even){
     background-color: #464646;
     color: #fff;
@@ -228,18 +223,6 @@
     background-color: #fd7e14;
     color: #323232;
   }
-  /* #data-table th:first-of-type{
-    border-top-left-radius:10px;
-  }
-  #data-table th:last-of-type {
-    border-top-right-radius:10px;
-  }
-  #data-table tr:last-of-type td:first-of-type{
-    border-bottom-left-radius:10px;
-  }
-  #data-table tr:last-of-type td:last-of-type{
-    border-bottom-right-radius:10px;
-  } */
   thead {
     vertical-align: middle;
     border-collapse: collapse;
@@ -272,4 +255,55 @@
     border-radius: 0 0 8px 0;
   }
 
+/* ~~~~~~~~~~~~~  CSS for Page Titles  ~~~~~~~~~~~~~ */
+  .page-title {
+    font-size: 50px;
+    color: #2E8540;
+    font-family: cursive;
+    font-weight: bold;
+    margin: 10px 0px 20px;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #000, 3px 2px 6px #fd7e14;
+    margin: 22px 0px 20px;
+    text-align: center;
+    line-height: 60px;
+    -webkit-text-stroke: 1.5px #3F51B5;
+  }
+  .page-subtitle {
+    font-size: 28px;
+    letter-spacing: -1px;
+    color: #2E8540;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px #fd7e14;
+    margin: 15px 0px 15px;
+    text-align: center;
+    line-height: 38px;
+    -webkit-text-stroke: 1px black;
+  }
+
+  .student-title {
+    font-size: 50px;
+    font-weight: bold;
+    color: #fd7e14;
+    font-family: cursive;
+    margin: 10px 0px 20px;
+    text-transform: uppercase;
+    text-shadow: 1px 0 6px #000, 6px 3px 6px #2E8540;
+    margin: 22px 0px 20px;
+    text-align: center;
+    line-height: 60px;
+    -webkit-text-stroke: 1px black;
+  }
+  .student-subtitle {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: #bec7f7;
+    text-transform: uppercase;
+    text-shadow: 0 0 7px #000, 3px 2px 6px #3F51B5, 3px 2px 5px #fff;
+    margin: 15px 0px 20px;
+    text-align: center;
+    line-height: 38px;
+    -webkit-text-stroke: 1px #2E8540;
+  }
   

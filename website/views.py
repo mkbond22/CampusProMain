@@ -47,6 +47,12 @@ def delete_course():
     return jsonify({})
 
 
+@views.route('/user-profile/')
+@login_required
+def user_profile():
+    return render_template("user_profile.html")
+
+
 ################################     Student Pages     ################################
 @views.route('/student')
 def student():
@@ -63,6 +69,18 @@ def student_dash():
 @login_required
 def student_grades():
     return render_template("stu_grades.html")
+
+
+@views.route('/student/courses')
+@login_required
+def student_courses():
+    return render_template("stu_courses.html")
+
+
+@views.route('/student/course-register')
+@login_required
+def student_course_registration():
+    return render_template("stu_course_registration.html")
 
 
 ################################     Admin Pages     ################################

@@ -26,21 +26,24 @@
     </head>
 
     <body>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
+      <div id="grad">
+        <nav class="navbar navbar-expand-lg">
           <a class="navbar-brand" href="/">
             <img class="navbar-logo" src="{{ url_for('static', filename='assets/CampusProLogo.png') }}" alt="Navbar Logo">
             <img class="header-logo" src="{{ url_for('static', filename='assets/header.png') }}" alt="Header Logo">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbar"
-            >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+          </a>
+            <div class="container1">
+              
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
           <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto" style="list-style-type: none;">
               <!-- HREF="/ " CALLS THE CORRESPONDING ROUTING METHOD -->
               {% if user.is_authenticated %}
               <li class="nav-item">
@@ -64,6 +67,7 @@
           </div>
         </div>
       </nav>
+    </div>
 
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %} 

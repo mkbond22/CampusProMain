@@ -18,56 +18,64 @@
     <title>{% block title %}Parent Dashboard{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="/">
-        <img class="navbar-logo" src="{{ url_for('static', filename='assets/CampusProLogo.png') }}" alt="Navbar Logo">
-      </a>
-      <div class="container">
-
-        <button 
-          class="navbar-toggler" 
-          type="button" data-toggle="collapse" 
-          data-target="#navbarNavDropdown" 
-          aria-controls="navbarNavDropdown" 
-          aria-expanded="false" 
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbar">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/student/dash" style="color: #ffffff;">Dashboard <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #ffffff;">Semester at a Glance</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #ffffff;">Courses</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/student/grades" style="color: #ffffff;">Grades</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #ffffff;">Messages</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="color: #ffffff;">Resources</a>
-            </li>
-            <!-- RESOURCES INCLUDES "FACULTY","LIBRARY DATABASE", AND "HELP" TABS -->
-          </ul>
-          <div class="container" style="display: flex; justify-content: flex-end;">
-            <li class="nav-item">
-              <a class="nav-link" href="/logout" style="color: #ffffff;">Logout</a>
-            </li>
-            <a class="navbar-brand" href="#" style="color: #ffffff;">
-              Profile
-              <img class="profile-pic" src="{{ url_for('static', filename='assets/gen_profile_pic.png') }}" alt="Profile Picture">
-            </a>
+    <div id="grad">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">
+          <img class="navbar-logo" src="{{ url_for('static', filename='assets/CampusProLogo.png') }}" alt="Navbar Logo">
+        </a>
+        <div class="container1">
+  
+          <button 
+            class="navbar-toggler" 
+            type="button" data-toggle="collapse" 
+            data-target="#navbarNavDropdown" 
+            aria-controls="navbarNavDropdown" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/student/dash" style="color: #ffffff;">Dashboard <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: #ffffff;">Semester at a Glance</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: #ffffff;">Courses</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/student/grades" style="color: #ffffff;">Grades</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: #ffffff;">Messages</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: #ffffff;">Resources</a>
+              </li>
+              <!-- RESOURCES INCLUDES "FACULTY","LIBRARY DATABASE", AND "HELP" TABS -->
+            </ul>
+            <div class="container2" style="display: flex; justify-content: flex-end;">
+              <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                <li style="margin-left: 15px; margin-right: 0%;">
+                  <a class="navbar navbar-brand" href="#" style="color: #ffffff;">{{current_user.first_name}}</a>
+                </li>
+                <li style="margin-left: 0%;">
+                  <img class="profile-pic" 
+                      src="{{ url_for('static', filename='assets/gen_profile_pic.png') }}" 
+                      alt="Profile Picture">
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout" style="color: #ffffff; margin-left: 20px;">Logout</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
 
     <div class="container">
       {% block content %}
