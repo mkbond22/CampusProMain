@@ -1,7 +1,65 @@
 
-{% if user.permissions == 0 %}
-{% extends "_template_admin.html" %}{% block title %}Manage Users{% endblock %}
+<!-- 
+CHECK USER PERMISSIONS TO DETERMINE WHICH TEMPLATE WE USE TO RENDER THE PROFILE PAGE UNDER
+  -ex: if the current user is an admin, then we want to load the profile page under the admin template
+       if the current user is a student, then we want to load the same html under the student template
 
-{% else %}
+  { if current_user.permissions == 0 }
+  { extends "_template_admin.html" }{ block title }Manage Users{ endblock }
 
-{% endif %}
+  { else }
+
+  { endif } 
+-->
+
+{% extends "_template_admin.html" %}{% block title %}User Profile{% endblock %}
+
+{%block content%}
+
+<br>
+<h1 class="student-title">{{current_user.first_name}}'s Profile</h1>
+<h2 class="divider gradient"></h2>
+
+<div class="container-template">
+    <div class="card profile-card" style="border: 3px solid #323232; border-radius: 8px;">
+      <div class="card-body">
+        <h5 class="profile-card-title">Profile Information</h5>
+        <a href="#" class="btn btn-sm" style=" font-weight: bold;">
+          Update Profile
+        </a>
+        <br>
+
+        <h2 class="divider2 razor"></h2>
+
+        <strong>Name:</strong>
+        {{current_user.first_name}} {{current_user.last_name}}<br>
+        <strong>Street:</strong>
+        {{current_user.address}}<br>
+        <strong>City:</strong>
+        {{current_user.city}}<br>
+        <strong>State:</strong>
+        {{current_user.state}}<br>
+        <strong>Zip:</strong>
+        {{current_user.zip_code}}<br>
+        <strong>Email:</strong>
+        {{current_user.email}}<br>
+        <strong>Phone Number:</strong>
+        {{current_user.phone_number}}<br>
+
+        {% if current_user.permissions == 0 %}
+          <strong>User ID:</strong>
+          {{current_user.id}}<br>
+          <strong>Password:</strong>
+          {{current_user.password}}<br>
+          <strong>Permissions:</strong><br>
+        {% endif %}
+
+        <p class="card-text"></p>
+        <a href="#" class="card-link">link</a>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

@@ -66,7 +66,7 @@ def create_app():
         # db.session.add(user1)
         # db.session.add(user2)
         # db.session.add(user3)
-        # db.session.add(user4)
+        # db.session.add(user4) 
         # db.session.add(user5)
 
         # abbr = "FREN"
