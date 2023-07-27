@@ -80,7 +80,8 @@ def student_courses():
 @views.route('/student/course-register')
 @login_required
 def student_course_registration():
-    return render_template("stu_course_registration.html")
+    courses = Course.query.all()
+    return render_template("stu_course_registration.html", courses=courses)
 
 
 ################################     Admin Pages     ################################
