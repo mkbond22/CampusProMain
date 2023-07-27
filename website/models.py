@@ -21,9 +21,6 @@ USER REQUIREMENTS:
  USER TYPES: 0=ADMIN, 1=STUDENT, 2=TEACHER, 3=PARENT
 """
 """
-USER TABLE COLUMNS:
-ID | First Name | Last Name | Email | Phone Number | Password | Permissions ENUM('0', '1', '2', '3')
-
 "CREATE TABLE Users (id int PRIMARY KEY AUTO_INCREMENT, 
                     first_name VARCHAR(50), 
                     last_name VARCHAR(50), 
@@ -98,6 +95,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(20), nullable=False)
     permissions = db.Column(db.Integer, None)
     courses = db.relationship('Course')  # When a class is added, this field will store the Courses.id
+    # NEED TO ADD RELATIONSHIP TO ASSIGNMENTS TABLE
 
     """
     We want to be able to choose a user and be able to see all of their notes.
@@ -171,9 +169,7 @@ class Course(db.Model):
     course_abbr = db.Column(db.String(10))
     section = db.Column(db.String)                          # SUFFIX TO BE JOINED WITH COURSE_ABBR (A, B, C)
     course_code = db.Column(db.String(20), unique=True)     # Unique value in an f-string -- "course_abbr-section"
-    #description = db.Column(db.String(100)) #DELETE COLUMN
     teacher = db.Column(db.String(50))
-    #year = db.Column(db.DateTime(timezone=True), default=func.now())
     year = db.Column(db.String(20)) # EX. 2023-2024 SINCE SCHOOL YEAR GOES FROM AUGUST-MAY
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # The second 'user.id' is referencing the User table - matching it to 'user_id' in the courses table
 
@@ -191,5 +187,12 @@ class Grades(db.Model):
     date_due = db.Column(db.DateTime(timezone=True))
     grade = db.Column(db.Integer)
 
+class Assignments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    assignment_name = db.Column(db.String(50))
+    date_assigned = db.Column(db.DateTime(timezone=True), default=func.now())
+    date_due = db.Column(db.DateTime(timezone=True))
+    grade = db.Column(db.Integer, nullable=True)
+    assignment_creator =db.Column(db.Integer, db.ForeignKey('user.id')) #Create relationship with the User table to track what teacher created the assignment
 
 
