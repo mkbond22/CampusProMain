@@ -203,7 +203,7 @@
     align-items: center;
     margin-bottom: 5px;
     border: 1px solid #323232;
-    box-shadow: 1px 0 3px #000, 2px 1px 4px #fd7e14;
+    box-shadow:1px 0 3px #323232, 2px 0 2px #fff, 3px 1px 4px #fd7e14;
     color: #323232;
   }
   /* a:hover, .btn:hover {
@@ -370,16 +370,19 @@
     width: 100%;
     border: 5px solid #323232;
     border-radius: 8px;
+    box-shadow: 5px 1px 3px #000, 8px 3px 5px #fd7e14;
     font-family: "Montserrat", "Arial", sans-serif;
     padding-left: 15px;
     padding-right: 15px;
     margin: auto;
   }
   .profile-card-title {
-    font-size: 20px;
+    font-size: 25px;
     line-height: 30px;
     font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 4px #fff, 1px 0 1px #000, 2px 1px 2px #fd7e14, 3px 1px 2px #fff;
     color: #323232;
-    margin-bottom: 2px;
+    margin-bottom: 8px;
   }
   
