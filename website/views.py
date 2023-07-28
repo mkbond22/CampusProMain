@@ -7,7 +7,7 @@ from flask_login import login_required, current_user
 # from flask_wtf import FlaskForm
 # from wtforms import StringField, SubmitField
 # from wtforms.validators import DataRequired
-from .models import User, Course
+from .models import User, Course, user_course, Assignment, Submission
 # from sqlalchemy.inspection import inspect
 # from sqlalchemy import MetaData
 from . import db
@@ -103,8 +103,22 @@ def admin_dash():
 @views.route('/admin/manage_users')
 @login_required
 def admin_manage_users():
+
+    id = current_user.id
+    user = User.query.filter(User.id == id).first()
+
+    #Get the courses that a user is currently enrolled in
+    enrolled_courses = user.current_courses
+
+    course = Course.query.filter(Course.id == 1).first()
+    courseCode = course.course_code
+    courseName = course.course_name
+
+    #Get all the students that are enrolled in a course
+    enrolled_students = course.enrolled_students
+
     users = User.query.all()
-    return render_template("admin_manage_users.html", users=users)
+    return render_template("admin_manage_users.html", users=users, course=course, enrolled_courses=enrolled_courses, enrolled_students=enrolled_students)
 
 
 @views.route('/admin/manage_courses')

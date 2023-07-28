@@ -1,5 +1,55 @@
 Text file to hold a backup of table data
 
+
+USER_COURSE TABLE:
+
+
+user_course = db.Table('user_course',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('course_id', db.Integer, db.ForeignKey('course.id'))
+)
+
+----RUN THIS TO ADD RELATIONSHIP:
+
+  ~~QUERY TO FILTER USERS AND FIND THE USER WE WANT TO FORM A RELATIONSHIP WITH
+
+        user = User.query.filter(User.id == 3).first()
+
+  ~~QUERY TO FILTER COURSES AND FIND THE COURSE WE WANT TO FORM A RELATIONSHIP WITH
+
+        course = Course.query.filter(Course.id == 1).first()
+
+  ~~COURSE OBJECT IS ADDED TO "current_courses" COLUMN OF USER TABLE. THE "user_course"
+    TABLE IS A 2-D LIST SO THE COURSES ARE STORED IN THE USER TABLE AS A LIST[] OF OBJECTS. SO
+    WE USE .append() METHOD TO ADD AN OBJECT TO THE LIST
+
+        user.current_courses.append(course)
+        db.session.commit()
+
+  ~~TO ACCESS THE DATA IN THE "current_courses" COLUMN WE HAVE TO INDEX THE LIST.
+    SO IF WE WANT TO DISPLAY THE COURSE_ID AND COURSE_CODE FOR THE FIRST CLASS IN THE "current_courses"
+    LIST, WE FIND THE OBJECT AT "user.current_courses[0]"
+
+        enrolled_course = user.current_courses[0] #current_courses column is a list[]-type that holds course-objects
+
+  ~~THEN WE CAN GET THE ATTRIBUTES FROM THE OBJECT
+        course_id = enrolled_course.id
+        course_code = enrolled_course.course_code
+        print(course_id, course_code)
+
+  ~~WE CAN DISPLAY ALL THE STUDENTS THAT ARE ENROLLED IN A CERTAIN CLASS:
+
+        for enrolled_student in course.enrolled_students:
+            print(enrolled_student)
+
+  ~~WE CAN DISPLAY ALL THE COURSES THAT A SPECIFIC STUDENT IS ENROLLED IN:
+
+        for current_course in user.current_courses:
+            print(current_course)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 USER TABLE:
 
 class User(db.Model, UserMixin):
@@ -14,43 +64,44 @@ class User(db.Model, UserMixin):
   phone_number = db.Column(db.String(15), nullable=False, unique=True)
   password = db.Column(db.String(20), nullable=False)
   permissions = db.Column(db.Integer, None)
-  courses = db.relationship('Course')
+  current_courses = db.relationship('Course', secondary=user_course, backref='enrolled_students')
 
---RUN THIS TO ADD USERS:
-        # user1 = User(first_name="Tyler", last_name="Selby", address="12233 Eagle Ridge", 
-        #                 city="Walton", zip_code=41094, state="KY", email="t.selby@cpro.edu", 
-        #                 phone_number=8598018793, 
-        #                 password=generate_password_hash("123pass", method='sha256'), 
-        #                 permissions=0)
-        # user2 = User(first_name="Megan", last_name="Bond", address="1234 Megan's Lane", 
-        #                 city="Cape Girardeau", zip_code=63701, state="MO", email="m.bond@cpro.edu", 
-        #                 phone_number=5734292338, 
-        #                 password=generate_password_hash("456pass", method='sha256'), 
-        #                 permissions=0)
-        # user3 = User(first_name="Jim", last_name="Beam", address="555 Jim Avenue", 
-        #                 city="Smalltown", zip_code=19091, state="AZ", email="j.beam@cpro.edu", 
-        #                 phone_number=8593751289, 
-        #                 password=generate_password_hash("pass456", method='sha256'), 
-        #                 permissions=1)
-        # user4 = User(first_name="Mary", last_name="Poppins", address="11 Umbrella Street", 
-        #                 city="Poppinsville", zip_code=24923, state="MN", email="m.poppins@cpro.edu", 
-        #                 phone_number=5734814889, 
-        #                 password=generate_password_hash("456pass", method='sha256'), 
-        #                 permissions=2)
-        # user5 = User(first_name="Isaac", last_name="Newton", address="123 Gravity Street", 
-        #                 city="ScienceVille", zip_code=65894, state="NJ", email="i.newton@cpro.edu", 
-        #                 phone_number=8593705989, 
-        #                 password=generate_password_hash("3pass21", method='sha256'), 
-        #                 permissions=3)
-        # db.session.add(user1)
-        # db.session.add(user2)
-        # db.session.add(user3)
-        # db.session.add(user4)
-        # db.session.add(user5)
+----RUN THIS TO ADD USERS:
+        user1 = User(first_name="Tyler", last_name="Selby", address="12233 Eagle Ridge", 
+                         city="Walton", zip_code=41094, state="KY", email="t.selby@cpro.edu", 
+                         phone_number=8598018793, 
+                         password=generate_password_hash("123pass", method='sha256'), 
+                         permissions=0)
+        user2 = User(first_name="Megan", last_name="Bond", address="1234 Megan's Lane", 
+                         city="Cape Girardeau", zip_code=63701, state="MO", email="m.bond@cpro.edu", 
+                         phone_number=5734292338, 
+                         password=generate_password_hash("456pass", method='sha256'), 
+                         permissions=0)
+        user3 = User(first_name="Jim", last_name="Beam", address="555 Jim Avenue", 
+                         city="Smalltown", zip_code=19091, state="AZ", email="j.beam@cpro.edu", 
+                         phone_number=8593751289, 
+                         password=generate_password_hash("pass456", method='sha256'), 
+                         permissions=1)
+        user4 = User(first_name="Mary", last_name="Poppins", address="11 Umbrella Street", 
+                         city="Poppinsville", zip_code=24923, state="MN", email="m.poppins@cpro.edu", 
+                         phone_number=5734814889, 
+                         password=generate_password_hash("456pass", method='sha256'), 
+                         permissions=2)
+        user5 = User(first_name="Isaac", last_name="Newton", address="123 Gravity Street", 
+                         city="ScienceVille", zip_code=65894, state="NJ", email="i.newton@cpro.edu", 
+                         phone_number=8593705989, 
+                         password=generate_password_hash("3pass21", method='sha256'), 
+                         permissions=3)
+        db.session.add(user1)
+        db.session.add(user2)
+        db.session.add(user3)
+        db.session.add(user4)
+        db.session.add(user5)
         db.session.commit()
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 COURSES TABLE:
 
@@ -62,38 +113,92 @@ class Course(db.Model):
   course_code = db.Column(db.String(20), unique=True)     # Unique value in an f-string -- "course_abbr-section"
   teacher = db.Column(db.String(50))
   year = db.Column(db.String(20)) # EX. 2023-2024 SINCE SCHOOL YEAR GOES FROM AUGUST-MAY
+  total_grade = db.Column(db.String(5), nullable=True)    # Will need some logic to calculate(get values for each User.Assignments.grade / number of assignmnets)
   user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+  assignments = db.relationship('Assignment', backref='course')
 
 
---RUN THIS TO ADD COURSES:
+----RUN THIS TO ADD COURSES:
 
-        # abbr = "FREN"
-        # sec = "C"
-        # courseCode = (f"{abbr}-{sec}").upper()
+        abbr = "FREN"
+        sec = "C"
+        courseCode = (f"{abbr}-{sec}").upper()
 
-        # course1 = Course(course_name="Algebra I", course_abbr="FRMA", 
-        #                 section="A", course_code= courseCode, 
-        #                 teacher="Mary Poppins", year="2023-2024")
-        # course2 = Course(course_name="Algebra I", course_abbr="FRMA",
-        #               section="B", course_code= courseCode, 
-        #               teacher="Carl Gauss", year="2023-2024")
-        # course3 = Course(course_name="Geometry", course_abbr="SOMA", 
-        #               section="A", course_code= courseCode, 
-        #               teacher="Carly Nickles", year="2023-2024")
-        # course4 = Course(course_name="Trigonometry", course_abbr="JRMA", 
-        #               section="A", course_code= courseCode, 
-        #               teacher="Mary Jane", year="2023-2024")
-        # course5 = Course(course_name="Calculus I", course_abbr="SRMA", 
-        #               section="A", course_code= courseCode, 
-        #               teacher="Samos Pythagoras", year="2023-2024")
-        # course6 = Course(course_name="English I", course_abbr="FREN", 
-        #               section="C", course_code= courseCode, 
-        #               teacher="George Orwell", year="2023-2024")
-        # db.session.add(course1)
-        # db.session.add(course2)
-        # db.session.add(course3)
-        # db.session.add(course4)
-        # db.session.add(course5)
-        # db.session.add(course6)
+        course1 = Course(course_name="Algebra I", course_abbr="FRMA", 
+                         section="A", course_code= courseCode, 
+                         teacher="Mary Poppins", year="2023-2024")
+        course2 = Course(course_name="Algebra I", course_abbr="FRMA",
+                       section="B", course_code= courseCode, 
+                       teacher="Carl Gauss", year="2023-2024")
+        course3 = Course(course_name="Geometry", course_abbr="SOMA", 
+                       section="A", course_code= courseCode, 
+                       teacher="Carly Nickles", year="2023-2024")
+        course4 = Course(course_name="Trigonometry", course_abbr="JRMA", 
+                       section="A", course_code= courseCode, 
+                       teacher="Mary Jane", year="2023-2024")
+        course5 = Course(course_name="Calculus I", course_abbr="SRMA", 
+                       section="A", course_code= courseCode, 
+                       teacher="Samos Pythagoras", year="2023-2024")
+        course6 = Course(course_name="English I", course_abbr="FREN", 
+                       section="C", course_code= courseCode, 
+                       teacher="George Orwell", year="2023-2024")
+        db.session.add(course1)
+        db.session.add(course2)
+        db.session.add(course3)
+        db.session.add(course4)
+        db.session.add(course5)
+        db.session.add(course6)
+        db.session.commit()
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+ASSIGNMENT TABLE:
+
+class Assignment(db.Model):
+   id = db.Column(db.Integer, primary_key=True)
+   assignment_creator =db.Column(db.String(50))
+   assignment_name = db.Column(db.String(50))
+   date_assigned = db.Column(db.Date(), default=func.current_date())
+   date_due = db.Column(db.Date())
+   grade = db.Column(db.String, None)
+   submission = db.relationship('Submission', backref='assignment')
+
+
+----RUN THIS TO ADD ASSIGNMENTS:
+
+        d = date(2023, 9, 5)
+        course = Course.query.filter(Course.course_code == "FRMA-A").first()
+
+        assignment1 = Assignment(assignment_creator="Jim Beam", assignment_name="Homework 1", 
+                         date_due=d, grade="-", course=course)
+        assignment2 = Assignment(assignment_creator="Jon Snow", assignment_name="Another Assignment", 
+                         date_due=d, grade="-")
+        assignment3 = Assignment(assignment_creator="Joe Mama", assignment_name="Test3", 
+                         date_due=d, grade=89)
+        
+        db.session.add(assignment1)
+        db.session.commit()
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+SUBMISSION TABLE:
+
+
+class Submission(db.Model):
+   id = db.Column(db.Integer, primary_key=True)
+   filename = db.Column(db.String(100))
+   date_submitted = db.Column(db.Date(), default=func.current_date())
+   assignment_id = db.Column(db.Integer, db.ForeignKey('assignment.id'))
+
+
+----RUN THIS TO ADD SUBMISSION:
+
+        submission1 = Submission(filename="path/filedirectory/filename", assignment=Homework 1)
+        db.session.add(submission1)
         db.session.commit()
 

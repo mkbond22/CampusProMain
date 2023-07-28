@@ -52,6 +52,27 @@
   </div>
 </div>
 <br>
+
+<div class="container3">
+  <h4 style="background-color: aqua;">{{current_user.first_name}}'s Current Enrolled Classes</h4>
+  <ul style="list-style-type: none;">
+    {% for course in enrolled_courses %}
+      <li style="color: #323232; font-size: 30px;">"CourseID:{{course.id}} Course Code:{{course.course_code}} Course Name:{{course.course_name}}</li>
+    {% endfor %}
+  </ul>
+</div>
+<br>
+<div class="container3">
+  <h4 style="background-color: aqua;">Students currently enrolled in {{course.course_code}} {{course.course_name}}:</h4>
+  <ul style="list-style-type: none;">
+    {% for student in enrolled_students %}
+      <li style="color: #323232; font-size: 30px;">
+        "Student Name:{{student.first_name}} {{student.last_name}} StudentID:{{student.id}}</li>
+    {% endfor %}
+  </ul>
+</div>
+<br>
+
   <div class="container">
     <div class="row">
         <div class="col-lg-6 mb-4">
