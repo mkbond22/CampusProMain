@@ -21,16 +21,7 @@ USER REQUIREMENTS:
 
  USER TYPES: 0=ADMIN, 1=STUDENT, 2=TEACHER, 3=PARENT
 """
-"""
-"CREATE TABLE Users (id int PRIMARY KEY AUTO_INCREMENT, 
-                    first_name VARCHAR(50), 
-                    last_name VARCHAR(50), 
-                    email VARCHAR(100), 
-                    phone_number int, 
-                    passwd VARCHAR(50), 
-                    permissions ENUM('0', '1', '2', '3')
-                    )"
-            
+"""         
 user_list = [("Tyler", "Selby", "t.selby@cpro.edu", 8598018793, "123pass", 0),
             ("Megan", "Bond", "m.bond@cpro.edu", 5734292338, "456pass", 0),
             ("Jim", "Beam", "j.beam@cpro.edu", 8593751289, "pass456", 1),

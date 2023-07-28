@@ -199,6 +199,34 @@
     align-items: center;
   }
 
+  /* ~~~~~~~~~~~~~  Button Styles  ~~~~~~~~~~~~~ */
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 2px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    /* margin: 4px 2px; */
+    margin-left: 100px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  .register-button {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    -webkit-text-stroke: 0.5px #fd7e14;
+    border: 2px solid #323232;
+    border-radius: 12px;
+  }
+  .register-button:hover {
+    background-color: #323232;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.24),0 10px 50px 0 rgba(0,0,0,0.19);
+  }
   .btn {
     align-items: center;
     margin-bottom: 5px;
@@ -206,6 +234,7 @@
     box-shadow:1px 0 3px #323232, 2px 0 2px #fff, 3px 1px 4px #fd7e14;
     color: #323232;
   }
+
   /* a:hover, .btn:hover {
     box-shadow: 2px 1px 5px #000, 4px 2px 5px #fff, 4px 1px 4px #fd7e14;
     text-shadow: 3px 1px 5px #000, 4px 2px 5px #fff, 3px 1px 4px #ebdd17;

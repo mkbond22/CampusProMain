@@ -14,11 +14,14 @@
 
   <div class="container3">
 
-    <h4 style="background-color: aqua;">Open Classes</h4>
+    <h4 style="background-color: aqua; padding: 5px 15px;">Open Classes</h4>
 
     <ul style="list-style-type: none;">
       {% for course in courses %}
-        <li style="color: #323232; font-size: 30px;">{{course.course_name}}</li>
+        <li style="color: #323232; font-size: 30px; padding: 5px 15px;">
+          <b>CourseTitle:</b>{{course.course_name}} <b>CourseCode:</b>{{course.course_code}} <b>Teacher:</b>{{course.teacher}}
+          <button class="button register-button">Register</button>
+        </li>
       {% endfor %}
     </ul>
     
