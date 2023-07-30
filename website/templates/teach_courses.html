@@ -1,0 +1,67 @@
+
+{% extends "_template_base.html" %}{% block title %}Courses{% endblock %}
+
+{% block content %}
+
+<br>
+<h1 class="student-title">Courses</h1>
+<p class="h4 student-subtitle">
+  From the courses page, students can access each class's homepage, see their assignments, 
+  grades, teacher contact, and more. This is also where students will go when it's
+  time to register for the next year's classes. 
+</p>
+<h2 class="divider gradient"></h2>
+<br>
+<h3>Course Sections</h3>
+
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <!-- IMAGE CARD WITH TEXT, LINK, AND BUTTON -->
+            <div class="card">
+                <img class="card-img-top" src="" alt="">
+
+                <div class="card-body">
+                    <h5 class="card-title">BIO101</h5>
+                    <p class="card-text">
+                        Some quick example text to build on 
+                        the card title and make up the bulk 
+                        of the card's content.
+                    </p>
+
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        Card link
+                    </a>
+                    <a href="#" class="btn btn-outline-secondary btn-sm">
+                        <i class="far fa-heart"></i></a>
+                </div>
+            </div>
+        </div>
+          <!-- IMAGE CARD WITH ONLY TEXT -->
+        <div class="col-lg-6 mb-4">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">MAT111</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <!-- TEXT CARD WITH TITLE, SUBTITLE, AND LINK -->
+        <!-- WIDTH SPECIFIED ""style="width: 18rem;"" -->
+        <div class="col-lg-6 mb-4">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">ENG112</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+          </div>
+        </div>  
+    </div>
+  </div>
+
+{% endblock %}
+

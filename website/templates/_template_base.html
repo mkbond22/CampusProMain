@@ -135,22 +135,31 @@
               {% elif current_user.permissions == 2 %}
                 <ul class="navbar-nav ml-auto" style="list-style-type: none;">
                   <li class="nav-item active">
-                    <a class="nav-link" href="/student/dash" style="color: #ffffff;">Dashboard <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/faculty/teacher-dash" style="color: #ffffff;">Dashboard <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#" style="color: #ffffff;">Semester at a Glance</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: #ffffff;">Courses</a>
+                    <a class="nav-link" href="/faculty/teacher-courses" style="color: #ffffff;">Courses</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/student/grades" style="color: #ffffff;">Grades</a>
+                    <a class="nav-link" href="#" style="color: #ffffff;">Grades</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#" style="color: #ffffff;">Messages</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: #ffffff;">Resources</a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" style="color: #ffffff;" 
+                      id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" 
+                      aria-expanded="false">
+                      Resources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="#">Make Announcement</a>
+                      <a class="dropdown-item" href="#">Faculty Directory</a>
+                      <a class="dropdown-item" href="#">Help</a>
+                    </div>
                   </li>
                   <!-- RESOURCES INCLUDES "FACULTY","LIBRARY DATABASE", AND "HELP" TABS -->
                 </ul>

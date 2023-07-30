@@ -182,6 +182,12 @@ def faculty_dash():
     return render_template("teach_dashboard.html", current_user=current_user)
 
 
+@views.route('/faculty/teacher-courses')
+@login_required
+def faculty_courses():
+    return render_template("teach_courses.html", current_user=current_user)
+
+
 ################################     Parent/Guardian Pages     ################################
 @views.route('/guardian')
 @login_required
