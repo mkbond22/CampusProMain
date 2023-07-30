@@ -1,5 +1,5 @@
 
-{% extends "_template_student.html" %}{% block title %}Grades{% endblock %}
+{% extends "_template_base.html" %}{% block title %}Grades{% endblock %}
 
 {% block content %}
 
@@ -13,7 +13,6 @@
 <h2 class="divider gradient"></h2>
 
   <div class="container3">
-
     <h4 style="background-color: aqua; padding: 5px 15px;">Open Classes</h4>
     <form method="POST">
       <ul style="list-style-type: none;">
@@ -32,11 +31,7 @@
         {% endfor %}
       </ul>
     </form>
-    
   </div>
-
-
-
   <br>
   <div class="row">
     <div class="col-lg-6 mb-4">
@@ -50,7 +45,6 @@
                     the card title and make up the bulk 
                     of the card's content.
                 </p>
-
                 <a href="#" class="btn btn-outline-primary btn-sm">
                     Card link
                 </a>

@@ -2,133 +2,288 @@
 <!-- THE STYLES WILL BE OVERRIDDEN BY OTHER FILES WHEN NECESARY -->
 
 <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"
-      />
-      <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        crossorigin="anonymous"
-      />
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 
-      <!-- JINJA TEMPLATING USED WHENEVER YOU'RE WRITING A BLOCK( SOME CODE IN THE BASE TEMPLATE THAT CAN BE OVERRIDEN IN A CHILD TEMPLATE) 
-        OR PYTHON CODE(IF STATEMENTS/FOR LOOPS/ ETC.) -->
-      <!-- JINJA SYNTAX ALWAYS GOES INTO CURLY BRACES AND PERCENT SIGNS -->
-      <title>{% block title %}{% endblock %}</title>
-    </head>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
 
-    <body>
-      <div id="grad">
-        <nav class="navbar navbar-expand-lg">
+  <body>
+    <div id="grad">
+      <nav class="navbar navbar-expand-lg">
+        {% if current_user.is_authenticated %}
+          <a class="navbar-brand" href="/">
+            <img class="navbar-logo" src="{{ url_for('static', filename='assets/CampusProLogo.png') }}" alt="Navbar Logo">
+          </a>
+        {% else %}
           <a class="navbar-brand" href="/">
             <img class="navbar-logo" src="{{ url_for('static', filename='assets/CampusProLogo.png') }}" alt="Navbar Logo">
             <img class="header-logo" src="{{ url_for('static', filename='assets/header.png') }}" alt="Header Logo">
           </a>
-            <div class="container1">
-              
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbar">
-                <span class="navbar-toggler-icon"></span>
-              </button>
+        {% endif %}
+          <div class="container1">
+            
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav ml-auto" style="list-style-type: none;">
-              <!-- HREF="/ " CALLS THE CORRESPONDING ROUTING METHOD -->
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" id="logout" href="/logout" style="color: #ffffff; margin-right: 60px;">Logout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="home" href="/" style="color: #ffffff;">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="studentDash" href="/student/dash" style="color: #ffffff;">Student</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" id="login" href="/login" style="color: #ffffff;">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="signUp" href="/sign-up" style="color: #ffffff; margin-right: 60px;">Sign Up</a>
-              </li>
+        <div class="collapse navbar-collapse" id="navbar">
+            {% if current_user.is_authenticated %}
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+              {% if current_user.permissions == 0 %}
+                <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/admin/dash" style="color: #ffffff;">Dashboard <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin/manage_users" style="color: #ffffff;">Manage Users</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin/manage_courses" style="color: #ffffff;">Manage Courses</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Reporting</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Registration</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Messages</a>
+                  </li>
+                </ul>
+                <div class="container2" style="display: flex; justify-content: flex-end;">
+                  <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                    <li style="margin-left: 15px; margin-right: 0%;">
+                      <a class="navbar navbar-brand" href="/user-profile/" style="color: #ffffff;">{{current_user.first_name}}</a>
+                    </li>
+                    <li style="margin-left: 0%;">
+                      <img class="profile-pic" href="/user-profile/" 
+                        src="{{ url_for('static', filename='assets/gen_profile_pic.png') }}" 
+                        alt="Profile Picture">
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout" style="color: #ffffff; margin-left: 20px;">Logout</a>
+                    </li>
+                  </ul>
+                </div>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+              {% elif current_user.permissions == 1 %}
+                <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/student/dash" style="color: #ffffff;">Dashboard <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Semester at a Glance</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/student/courses" style="color: #ffffff;">Courses</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/student/grades" style="color: #ffffff;">Grades</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Messages</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" style="color: #ffffff;" 
+                      id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" 
+                      aria-expanded="false">
+                      Resources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/student/course-register">Class Registration</a>
+                      <a class="dropdown-item" href="#">Faculty</a>
+                      <a class="dropdown-item" href="#">Help</a>
+                    </div>
+                  </li>
+                  <!-- RESOURCES INCLUDES "FACULTY","LIBRARY DATABASE", AND "HELP" TABS -->
+                </ul>
+                <div class="container2" style="display: flex; justify-content: flex-end;">
+                  <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                    <li style="margin-left: 15px; margin-right: 0%;">
+                      <a class="navbar navbar-brand" href="/user-profile/" style="color: #ffffff;">{{current_user.first_name}}</a>
+                    </li>
+                    <li style="margin-left: 0%;">
+                      <img class="profile-pic" href="/user-profile/"  
+                        src="{{ url_for('static', filename='assets/gen_profile_pic.png') }}" 
+                        alt="Profile Picture">
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout" style="color: #ffffff; margin-left: 20px;">Logout</a>
+                    </li>
+                  </ul>
+                </div>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+              {% elif current_user.permissions == 2 %}
+                <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/student/dash" style="color: #ffffff;">Dashboard <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Semester at a Glance</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Courses</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/student/grades" style="color: #ffffff;">Grades</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Messages</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Resources</a>
+                  </li>
+                  <!-- RESOURCES INCLUDES "FACULTY","LIBRARY DATABASE", AND "HELP" TABS -->
+                </ul>
+                <div class="container2" style="display: flex; justify-content: flex-end;">
+                  <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                    <li style="margin-left: 15px; margin-right: 0%;">
+                      <a class="navbar navbar-brand" href="#" style="color: #ffffff;">{{current_user.first_name}}</a>
+                    </li>
+                    <li style="margin-left: 0%;">
+                      <img class="profile-pic" 
+                          src="{{ url_for('static', filename='assets/gen_profile_pic.png') }}" 
+                          alt="Profile Picture">
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout" style="color: #ffffff; margin-left: 20px;">Logout</a>
+                    </li>
+                  </ul>
+                </div>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+              {% elif current_user.permissions == 3 %}
+                <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/student/dash" style="color: #ffffff;">Dashboard <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Semester at a Glance</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Courses</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/student/grades" style="color: #ffffff;">Grades</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Messages</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: #ffffff;">Resources</a>
+                  </li>
+                  <!-- RESOURCES INCLUDES "FACULTY","LIBRARY DATABASE", AND "HELP" TABS -->
+                </ul>
+                <div class="container2" style="display: flex; justify-content: flex-end;">
+                  <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                    <li style="margin-left: 15px; margin-right: 0%;">
+                      <a class="navbar navbar-brand" href="#" style="color: #ffffff;">{{current_user.first_name}}</a>
+                    </li>
+                    <li style="margin-left: 0%;">
+                      <img class="profile-pic" 
+                          src="{{ url_for('static', filename='assets/gen_profile_pic.png') }}" 
+                          alt="Profile Picture">
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/logout" style="color: #ffffff; margin-left: 20px;">Logout</a>
+                    </li>
+                  </ul>
+                </div>
               {% endif %}
-            </ul>
-          </div>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            {% else %}
+              <ul class="navbar-nav ml-auto" style="list-style-type: none;">
+                <li class="nav-item">
+                  <a class="nav-link" id="login" href="/login" style="color: #ffffff;">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="signUp" href="/sign-up" style="color: #ffffff; margin-right: 60px;">Sign Up</a>
+                </li>
+              </ul>
+            {% endif %}
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
+  </div>
 
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %} 
-        {% for category, message in messages %} 
-          {% if category == 'error' %}
-            <div class="alert alert-danger alter-dismissable fade show" role="alert">
-              {{ message }}
-              <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          {% else %}
-            <div class="alert alert-success alter-dismissable fade show" role="alert">
-              {{ message }}
-              <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          {% endif %} 
-        {% endfor %} 
-      {% endif %} 
-      {% endwith %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %} 
+      {% for category, message in messages %} 
+        {% if category == 'error' %}
+          <div class="alert alert-danger alter-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% else %}
+          <div class="alert alert-success alter-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %} 
+      {% endfor %} 
+    {% endif %} 
+    {% endwith %}
 
-      <!-- A CONTAINER WHICH WILL HOLD THE CONTENT FROM THE OTHER  -->
-      <div class="container-template">{% block content %} {% endblock %}</div>
+    <!-- A CONTAINER WHICH WILL HOLD THE CONTENT FROM THE OTHER  -->
+    <div class="container-template">{% block content %} {% endblock %}</div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
 
-    <script>
-      type="text/javascript"
-      src="{{ url_for('static', filename='index.js')}}"
-    </script>
+  <script>
+    type="text/javascript"
+    src="{{ url_for('static', filename='index.js')}}"
+  </script>
 
-    {% block javascript %}
-    <script type="text/javascript">
-      function deleteNote(noteId) {
-        fetch("/delete-note", {
-          method: "POST",
-          body: JSON.stringify({ noteId: noteId }),
-        }).then((_res) => {
-          window.location.href = "/";
-        });
-      } 
-    </script>
+  {% block javascript %}
+  <script type="text/javascript">
+    function deleteNote(noteId) {
+      fetch("/delete-note", {
+        method: "POST",
+        body: JSON.stringify({ noteId: noteId }),
+      }).then((_res) => {
+        window.location.href = "/";
+      });
+    } 
+  </script>
 
-    {% endblock %}
-    </body>
-  </html>
+  {% endblock %}
+  </body>
 </html>
+
 

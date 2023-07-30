@@ -78,7 +78,7 @@ def sign_up():
         phone_number = request.form.get('phone')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
-        permissions = None #request.form.get('password2')
+        permissions = None
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -93,6 +93,8 @@ def sign_up():
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
+        elif request.form.get('terms_box') is None:
+            flash('Please read and accept the terms and conditions.', category='error')
         
         """
         If all of the above checks pass, then we want to create the new user.

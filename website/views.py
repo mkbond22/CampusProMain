@@ -20,19 +20,15 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-
-    if request.method == 'POST': 
-        course = request.form.get('course')#Gets the course from the HTML form         #########################################################
-        course_id = request.form.get('course_id')
-        teacher = request.form.get('teacher')
-        year = request.form.get('year')
-
-        new_course = Course(id=course_id, teacher=teacher, description=course, year=year, user_id=current_user.id)  #providing the schema for the course
-        db.session.add(new_course) #adding the note to the database 
-        db.session.commit()
-        flash('Course Added Successfully!', category='success')
-    
-    return render_template("home.html", user=current_user)
+    if current_user.permissions == 0:
+        return render_template("admin_dashboard.html")
+    elif current_user.permissions == 1:
+        return redirect(url_for('views.student_dash'))
+    elif current_user.permissions == 2:
+        return redirect(url_for('views.faculty_dash'))
+    elif current_user.permissions == 3:
+        return redirect(url_for('views.parent_guardian_dash'))
+    return render_template("home.html")
 
 
 @views.route('/delete-course', methods=['POST'])
@@ -51,7 +47,7 @@ def delete_course():
 @views.route('/user-profile/')
 @login_required
 def user_profile():
-    return render_template("user_profile.html")
+    return render_template("user_profile.html", current_user=current_user)
 
 
 ################################     Student Pages     ################################
@@ -77,7 +73,7 @@ def student_dash():
     enrolled_students = course.enrolled_students
 
     users = User.query.all()
-    return render_template("stu_dashboard.html", users=users, course=course, enrolled_courses=enrolled_courses, enrolled_students=enrolled_students)
+    return render_template("stu_dashboard.html", current_user=current_user, users=users, course=course, enrolled_courses=enrolled_courses, enrolled_students=enrolled_students)
 
 
 @views.route('/student/grades', methods=['GET', 'POST'])
@@ -89,7 +85,7 @@ def student_grades():
 @views.route('/student/courses', methods=['GET', 'POST'])
 @login_required
 def student_courses():
-    return render_template("stu_courses.html")
+    return render_template("stu_courses.html", current_user=current_user)
 
 
 @views.route('/student/course-register', methods=['GET', 'POST'])
@@ -112,7 +108,7 @@ def student_course_registration():
         db.session.commit()
     
     flash('Course Added Successfully!', category='success')
-    return render_template("stu_course_registration.html", courses=courses)
+    return render_template("stu_course_registration.html", current_user=current_user, courses=courses)
 
 
 ################################     Admin Pages     ################################
@@ -128,7 +124,7 @@ def admin():
 @login_required
 def admin_dash():
     if current_user.permissions == 0:
-        return render_template("admin_dashboard.html")
+        return render_template("admin_dashboard.html", current_user=current_user)
     else:
         if current_user.permissions == 1:
             flash('Invalid permissions. Must be admin to access this page', category='error')
@@ -163,38 +159,38 @@ def admin_manage_users():
     enrolled_students = course.enrolled_students
 
     users = User.query.all()
-    return render_template("admin_manage_users.html", users=users, course=course, enrolled_courses=enrolled_courses, enrolled_students=enrolled_students)
+    return render_template("admin_manage_users.html", current_user=current_user, users=users, course=course, enrolled_courses=enrolled_courses, enrolled_students=enrolled_students)
 
 
 @views.route('/admin/manage_courses')
 @login_required
 def admin_manage_courses():
     courses = Course.query.all()
-    return render_template("admin_manage_courses.html", courses=courses)
+    return render_template("admin_manage_courses.html", current_user=current_user, courses=courses)
 
 
 ################################     Faculty Pages     ################################
 @views.route('/faculty')
 @login_required
 def faculty():
-    return render_template("_template_faculty.html")
+    return render_template("_template_faculty.html", current_user=current_user)
 
 
 @views.route('/faculty/teacher-dash')
 @login_required
 def faculty_dash():
-    return render_template("teach_dashboard.html")
+    return render_template("teach_dashboard.html", current_user=current_user)
 
 
 ################################     Parent/Guardian Pages     ################################
 @views.route('/guardian')
 @login_required
 def parent_guardian():
-    return render_template("_template_parent.html")
+    return render_template("_template_parent.html", current_user=current_user)
 
 
 @views.route('/parent-guardian/dash')
 @login_required
 def parent_guardian_dash():
-    return render_template("par-guard_dashboard.html")
+    return render_template("par-guard_dashboard.html", current_user=current_user)
 

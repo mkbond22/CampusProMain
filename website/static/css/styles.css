@@ -1,5 +1,5 @@
   
-  /* ~~~~~~~~~~~~~  Navbar CSS Styles  ~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Navbar CSS Styles  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
   #grad {
     background-image: linear-gradient(55deg, #3F51B5, #2E8540, #FF6600);
@@ -14,7 +14,6 @@
     text-shadow: 3px 1px 5px #000, 4px 2px 5px #fff, 3px 1px 4px #ebdd17;
     -webkit-text-stroke: 1px #000;
   }
-
   .navbar {
     width: 100%;
     font-family: "Montserrat", "Arial", sans-serif;
@@ -47,19 +46,16 @@
     margin: auto;
     justify-items: center;
   }
-  
   .navbar-brand {
     display: flex;
     align-items: center;
   }
-
   .profile-pic {
     width: 60px;
     height: 60px;
     padding: 0;
     margin-left: 0px;
   }
-  
   .navbar-logo {
     width: 70px;
     height: 60px;
@@ -67,14 +63,12 @@
     margin-right: 10px;
     margin-left: 10px;
   }
-  
   .header-logo {
     height: 50px;
   }
   a.nav-link {
     padding: 0px;
   }
-  
   @media (max-width: 768px) {
     .navbar-brand {
       justify-content: flex-start;
@@ -84,23 +78,18 @@
   .container .navbar-collapse {
     justify-content: flex-end;
   }
-  
   .container .navbar-collapse ul {
     margin-right: auto;
   }
-  
   .navbar-nav {
     align-items: center;
   }
-  
   .nav-item {
     margin-left: 10px;
   }
-  
   .navbar-text {
     margin-left: 10px;
   }
-  
   @media (max-width: 576px) {
     .navbar-text {
       margin-left: 0;
@@ -108,7 +97,7 @@
     }
   }
 
-/* ~~~~~~~~~~~~~  Divider to seperate page heading and body  ~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~  Divider to seperate page heading and body  ~~~~~~~~~~~~~~~~~~~~~~~ */
 
   .divider {
     display: flex;
@@ -163,7 +152,6 @@
     color: #ffffff;
     width: 300px;
   }
-  
   .admin-login-form {
     background-color: #FF6600;
     padding: 20px;
@@ -172,34 +160,30 @@
     width: 300px;
     margin: 0 auto;
   }
-
   .form-control {
     width: 200px;
   }
-
   .form-box {
     background-color: #2E8540;
     padding: 20px;
     border-radius: 5px;
     color: #ffffff;
   }
-
   .state-field {
     margin-top: 40px;
   }
-
   h1 {
     text-align:center;
     color:#3F51B5
   }
-
   .center {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  /* ~~~~~~~~~~~~~  Button Styles  ~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Button Styles  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
   .button {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -255,7 +239,6 @@
     padding: 10px;
     margin: 20px;
   }
-
   .add-course-form {
     width: 100%;
     display: grid;
@@ -264,7 +247,6 @@
     border:1px solid #000;
     box-shadow: 1px 0px 6px #fff,2px 1px 6px #2E8540;
     padding: 10px 10px 10px 10px;
-    
     margin-bottom: -100px;
   }
   .add-course-form > div {
@@ -286,7 +268,7 @@
     padding-bottom: 200px;
   }
 
-/* ~~~~~~~~~~~~~  Table CSS Styles  ~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Table CSS Styles  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
   #data-table {
     font-family: Arial, Helvetica, sans-serif;
@@ -349,7 +331,8 @@
     border-radius: 0 0 8px 0;
   }
 
-/* ~~~~~~~~~~~~~  CSS for Page Titles  ~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~~~~~~~~~~~  CSS for Page Titles  ~~~~~~~~~~~~~~~~~~~~~~~ */
+
   .page-title {
     font-size: 50px;
     color: #2E8540;
@@ -375,7 +358,6 @@
     line-height: 38px;
     -webkit-text-stroke: 1px #3F51B5;
   }
-
   .student-title {
     font-size: 50px;
     font-weight: bold;
@@ -401,7 +383,6 @@
     line-height: 38px;
     -webkit-text-stroke: 1px #2E8540;
   }
-
   .profie-card {
     width: 100%;
     border: 5px solid #323232;
