@@ -22,9 +22,9 @@ DB_NAME = "database.db"
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'dj3!8rn*-q87b5mg$f0'
-
     # OLD DATABASE
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    migrate = Migrate(app, db, render_as_batch=True)
     
     # INITIALIZE THE DATABASE BY PASSING IT OUR APP
     db.init_app(app)
@@ -35,10 +35,9 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import User, Course, user_course, Assignment, Submission
-    # from .sql_db import Users
+    from .models import User, Course, Assignment, Submission, user_course
 
-    with app.app_context():
+    # with app.app_context():
 
         # course = Course.query.filter(Course.id == 4).first()
         # courseID = course.id
@@ -54,16 +53,16 @@ def create_app():
 
         # print(user.current_courses)
 
-        """
-        QUERY TO LOOP OVER THE USERS IN A DATABASE AND RETURN THE NAMES
-        AND EMAILS FOR ALL USERS
-                users = User.query.filter().all()
-                for user in users:
-                    print(f"Name: {user.first_name} 
-                    {user.last_name} - Email: {user.email}")
-        """
+    """
+    QUERY TO LOOP OVER THE USERS IN A DATABASE AND RETURN THE NAMES
+    AND EMAILS FOR ALL USERS
+            users = User.query.filter().all()
+            for user in users:
+                print(f"Name: {user.first_name} 
+                {user.last_name} - Email: {user.email}")
+    """
 
-        db.create_all()
+        # db.create_all()
 
     login_manager = LoginManager()
     login_manager.login_view = 'authentication.login'
@@ -76,8 +75,3 @@ def create_app():
 
     return app
 
-
-# def create_database(app):
-#     if not path.exists('website/' + DB_NAME):
-#         db.create_all(app=app)
-#         print('Created Database!')

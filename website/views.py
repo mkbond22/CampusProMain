@@ -4,7 +4,7 @@ FILE TO STORE THE ROUTES/DIFFERENT PAGES THE USER CAN NAVIGATE TO.
 
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_user, login_required, logout_user, current_user
-from .models import User, Course, user_course, Assignment, Submission
+from .models import User, Course, Assignment, Submission, user_course
 from .auth import *
 # from flask_wtf import FlaskForm
 # from wtforms import StringField, SubmitField
@@ -48,6 +48,12 @@ def delete_course():
 @login_required
 def user_profile():
     return render_template("user_profile.html", current_user=current_user)
+
+
+@views.route('/faculty-directory/')
+@login_required
+def faculty_directory():
+    return render_template("faculty_directory.html", current_user=current_user)
 
 
 ################################     Student Pages     ################################

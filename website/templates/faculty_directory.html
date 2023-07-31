@@ -1,0 +1,49 @@
+
+{% extends "_template_base.html" %}{% block title %}Faculty Directory{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">Faculty Directory</h1>
+<p class="h4 page-subtitle">
+  SHOULD DISPLAY ALL *FACULTY* - ONLY USERS WITH PERMISSIONS 0 OR 2
+</p>
+<h2 class="divider gradient"></h2>
+
+<!-- Temporary card, DELETE WHEN FUNCTIONAL -->
+<div class="container">
+  <h3 class="page-subtitle" style="color: red;">Temporary card, DELETE WHEN FUNCTIONAL</h3>
+    <!-- TEXT CARD WITH TITLE, SUBTITLE, AND LINK -->
+    <!-- WIDTH SPECIFIED ""style="width: 18rem;"" -->
+      <div class="col-lg-6 mb-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">TEACHER</h5>
+            <h6 class="card-subtitle mb-2 text-muted">CLASSES TAUGHT</h6>
+            <p class="card-text">Quick teacher bio.</p>
+            <a href="#" class="card-link">Contact</a>   <!-- BUTTON OPENS POPUP BOX WITH EMAIL AND OFFICE PHONE# -->
+          </div>
+        </div>
+      </div> 
+</div>
+<br>
+
+<div class="container">
+  {% for user in users %}
+    <!-- TEXT CARD WITH TITLE, SUBTITLE, AND LINK -->
+    <!-- WIDTH SPECIFIED ""style="width: 18rem;"" -->
+      <div class="col-lg-6 mb-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">TEACHER</h5>
+            <h6 class="card-subtitle mb-2 text-muted">CLASSES TAUGHT</h6>
+            <p class="card-text">Quick teacher bio.</p>
+            <a href="#" class="card-link">Contact</a>   <!-- BUTTON OPENS POPUP BOX WITH EMAIL AND OFFICE PHONE# -->
+          </div>
+        </div>
+      </div> 
+  {% endfor %}
+</div>
+<br>
+
+{% endblock %}
+

@@ -67,9 +67,6 @@ user_course = db.Table('user_course',
 """
 Need to create a relationship table for ""AssignmentStudents(db.Model)""
 """
-# class AssignmentsStudents(db.Model):
-#    id = db.Column(db.Integer, primary_key=True)
-#    assignment_name = db.Column(db.String(50))
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -85,7 +82,7 @@ class User(db.Model, UserMixin):
     phone_number = db.Column(db.String(15), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     permissions = db.Column(db.Integer, None)
-    # teacher_section = db.relationship('Course', backref='section_teacher')
+    teacher_section = db.relationship('Course', backref='section_teacher')
     current_courses = db.relationship('Course', secondary=user_course, backref='enrolled_students')  # When a class is added, this field will store the Courses.id
 
 
@@ -121,7 +118,7 @@ class Course(db.Model):
    teacher = db.Column(db.String(50))
    year = db.Column(db.String(20)) # EX. 2023-2024 SINCE SCHOOL YEAR GOES FROM AUGUST-MAY
    total_grade = db.Column(db.String(5), nullable=True)    # Will need some logic to calculate(get values for each User.Assignments.grade / number of assignmnets)
-   # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+   teacher_id = db.Column('teacher_id', db.Integer, db.ForeignKey('user.id'))
    assignments = db.relationship('Assignment', backref='course') #Creates the invisible "course" column in the Assignment table
                                                                  #Add "course=course_code" when adding an assignment
 
@@ -161,7 +158,7 @@ class Assignment(db.Model):
    date_assigned = db.Column(db.Date(), default=func.current_date())
    date_due = db.Column(db.Date())
    grade = db.Column(db.String, None)
-   course_id = db.Column(db.Integer, db.ForeignKey('course.id'))
+   course_id = db.Column('course_id', db.Integer, db.ForeignKey('course.id'))
    submission = db.relationship('Submission', backref='assignment') #Creates the invisible "assignment" column in the submission table
                                                                     #Add "assignment=assignment_name" when adding a submission
 
@@ -174,7 +171,7 @@ class Submission(db.Model):
    id = db.Column(db.Integer, primary_key=True)
    filename = db.Column(db.String(100))
    date_submitted = db.Column(db.Date(), default=func.current_date())
-   assignment_id = db.Column(db.Integer, db.ForeignKey('assignment.id'))
+   assignment_id = db.Column('assignment_id', db.Integer, db.ForeignKey('assignment.id'))
 
 
    #Files should be stored in a file system or a service like S3
