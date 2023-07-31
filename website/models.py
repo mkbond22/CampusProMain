@@ -85,6 +85,7 @@ class User(db.Model, UserMixin):
     phone_number = db.Column(db.String(15), nullable=False, unique=True)
     password = db.Column(db.String(20), nullable=False)
     permissions = db.Column(db.Integer, None)
+    # teacher_section = db.relationship('Course', backref='section_teacher')
     current_courses = db.relationship('Course', secondary=user_course, backref='enrolled_students')  # When a class is added, this field will store the Courses.id
 
 
@@ -120,6 +121,7 @@ class Course(db.Model):
    teacher = db.Column(db.String(50))
    year = db.Column(db.String(20)) # EX. 2023-2024 SINCE SCHOOL YEAR GOES FROM AUGUST-MAY
    total_grade = db.Column(db.String(5), nullable=True)    # Will need some logic to calculate(get values for each User.Assignments.grade / number of assignmnets)
+   # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    assignments = db.relationship('Assignment', backref='course') #Creates the invisible "course" column in the Assignment table
                                                                  #Add "course=course_code" when adding an assignment
 

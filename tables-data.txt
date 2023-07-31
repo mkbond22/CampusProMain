@@ -12,24 +12,20 @@ user_course = db.Table('user_course',
 ----RUN THIS TO ADD RELATIONSHIP:
 
   ~~QUERY TO FILTER USERS AND FIND THE USER WE WANT TO FORM A RELATIONSHIP WITH
-
         user = User.query.filter(User.id == 3).first()
 
   ~~QUERY TO FILTER COURSES AND FIND THE COURSE WE WANT TO FORM A RELATIONSHIP WITH
-
         course = Course.query.filter(Course.id == 1).first()
 
   ~~COURSE OBJECT IS ADDED TO "current_courses" COLUMN OF USER TABLE. THE "user_course"
     TABLE IS A 2-D LIST SO THE COURSES ARE STORED IN THE USER TABLE AS A LIST[] OF OBJECTS. SO
     WE USE .append() METHOD TO ADD AN OBJECT TO THE LIST
-
         user.current_courses.append(course)
         db.session.commit()
 
   ~~TO ACCESS THE DATA IN THE "current_courses" COLUMN WE HAVE TO INDEX THE LIST.
     SO IF WE WANT TO DISPLAY THE COURSE_ID AND COURSE_CODE FOR THE FIRST CLASS IN THE "current_courses"
     LIST, WE FIND THE OBJECT AT "user.current_courses[0]"
-
         enrolled_course = user.current_courses[0] #current_courses column is a list[]-type that holds course-objects
 
   ~~THEN WE CAN GET THE ATTRIBUTES FROM THE OBJECT
@@ -38,14 +34,23 @@ user_course = db.Table('user_course',
         print(course_id, course_code)
 
   ~~WE CAN DISPLAY ALL THE STUDENTS THAT ARE ENROLLED IN A CERTAIN CLASS:
-
         for enrolled_student in course.enrolled_students:
             print(enrolled_student)
 
   ~~WE CAN DISPLAY ALL THE COURSES THAT A SPECIFIC STUDENT IS ENROLLED IN:
-
         for current_course in user.current_courses:
             print(current_course)
+
+
+----TO REMOVE A COURSE FROM THE USER'S SCHEDULE:
+        user.current_courses.remove(course)
+            db.session.commit()
+      
+  ~~WE NEED TO SPECIFY THE *COURSE OBJECT* TO BE REMOVED
+        user = User.query.filter(User.id == 3).first()
+        course = Course.query.filter(Course.'' == '').all()
+        courseID = ''
+        course_tbd = Course.query.filter(Course.id == courseID).first()
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -150,6 +155,8 @@ class Course(db.Model):
         db.session.add(course6)
         db.session.commit()
 
+----WHEN CREATING THE COURSE, WE NEED TO ADD THE TEACHER RELATIONSHIP = 'section_teacher=user.id'
+      ~ THE 'TEACHER' COLUMN SHOULD BE THE RELATED TEACHER'S NAME = 'user.first_name user.last_name'
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -169,18 +176,22 @@ class Assignment(db.Model):
 
 ----RUN THIS TO ADD ASSIGNMENTS:
 
-        d = date(2023, 9, 5)
-        course = Course.query.filter(Course.course_code == "FRMA-A").first()
+      d = date(2023, 9, 5)
+      course = Course.query.filter(Course.course_code == "FRMA-A").first()
 
-        assignment1 = Assignment(assignment_creator="Jim Beam", assignment_name="Homework 1", 
-                         date_due=d, grade="-", course=course)
-        assignment2 = Assignment(assignment_creator="Jon Snow", assignment_name="Another Assignment", 
-                         date_due=d, grade="-")
-        assignment3 = Assignment(assignment_creator="Joe Mama", assignment_name="Test3", 
-                         date_due=d, grade=89)
+      """
+      current_user.id SHOULD BE THE 'assignment_creator' WHEN A TEACHER 
+      ADDS AN ASSIGNMENT FROM THEIR COURSE PAGE
+      """
+      assignment1 = Assignment(assignment_creator="Jim Beam", assignment_name="Homework 1", 
+                        date_due=d, grade="-", course=course)
+      assignment2 = Assignment(assignment_creator="Jon Snow", assignment_name="Another Assignment", 
+                        date_due=d, grade="-")
+      assignment3 = Assignment(assignment_creator="Joe Mama", assignment_name="Test3", 
+                        date_due=d, grade=89)
         
-        db.session.add(assignment1)
-        db.session.commit()
+      db.session.add(assignment1)
+      db.session.commit()
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -198,7 +209,7 @@ class Submission(db.Model):
 
 ----RUN THIS TO ADD SUBMISSION:
 
-        submission1 = Submission(filename="path/filedirectory/filename", assignment=Homework 1)
-        db.session.add(submission1)
-        db.session.commit()
+      submission1 = Submission(filename="path/filedirectory/filename", assignment=Homework 1)
+      db.session.add(submission1)
+      db.session.commit()
 

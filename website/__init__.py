@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
+from flask_migrate import Migrate
 
 #from flask_wtf import FlaskForm
 #from wtforms import StringField, SubmitField
