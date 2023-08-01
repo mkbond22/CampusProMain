@@ -1,12 +1,26 @@
+"""
+CREATE CUSTOM METADATA & NAMING CONVENTIONS
+convention = {
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+}
+Use string-codes as alternative keys: 
+    ~ "fk", "pk", "ix", "ck", "uq"
+    ~ foreign key, primary key, index, check, and unique constraint, respectively
+
+metadata = MetaData(naming_convention=convention)
+db = SQLAlchemy(app, metadata=metadata)
+"""
+
 from flask import Flask
+from sqlalchemy import MetaData
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 from flask_migrate import Migrate
-
-#from flask_wtf import FlaskForm
-#from wtforms import StringField, SubmitField
-#from wtforms.validators import DataRequired
 from os import path
 from flask_login import LoginManager
 #import mysql.connector
@@ -37,13 +51,14 @@ def create_app():
 
     from .models import User, Course, Assignment, Submission, user_course
 
-    # with app.app_context():
+    with app.app_context():
 
         # course = Course.query.filter(Course.id == 4).first()
         # courseID = course.id
         # courseCode = course.course_code
 
-        # user = User.query.filter(User.id == 3).first()
+        # users = User.query.filter(User.permissions == 0).all()
+        # print(users)
         # user.current_courses.append(course)
 
         # print("Course:",course)
@@ -53,16 +68,16 @@ def create_app():
 
         # print(user.current_courses)
 
-    """
-    QUERY TO LOOP OVER THE USERS IN A DATABASE AND RETURN THE NAMES
-    AND EMAILS FOR ALL USERS
-            users = User.query.filter().all()
-            for user in users:
-                print(f"Name: {user.first_name} 
-                {user.last_name} - Email: {user.email}")
-    """
+        """
+        QUERY TO LOOP OVER THE USERS IN A DATABASE AND RETURN THE NAMES
+        AND EMAILS FOR ALL USERS
+                users = User.query.filter().all()
+                for user in users:
+                    print(f"Name: {user.first_name} 
+                    {user.last_name} - Email: {user.email}")
+        """
 
-        # db.create_all()
+        db.create_all()
 
     login_manager = LoginManager()
     login_manager.login_view = 'authentication.login'

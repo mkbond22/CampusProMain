@@ -2,6 +2,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from sqlalchemy import MetaData
 from datetime import date
 #from sqlalchemy import insert
 
@@ -159,6 +160,7 @@ class Assignment(db.Model):
    date_due = db.Column(db.Date())
    grade = db.Column(db.String, None)
    course_id = db.Column('course_id', db.Integer, db.ForeignKey('course.id'))
+   submitted = db.Column(db.Boolean, default=True)
    submission = db.relationship('Submission', backref='assignment') #Creates the invisible "assignment" column in the submission table
                                                                     #Add "assignment=assignment_name" when adding a submission
 

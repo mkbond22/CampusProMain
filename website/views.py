@@ -6,11 +6,7 @@ from flask import Blueprint, render_template, request, flash, jsonify, redirect,
 from flask_login import login_user, login_required, logout_user, current_user
 from .models import User, Course, Assignment, Submission, user_course
 from .auth import *
-# from flask_wtf import FlaskForm
-# from wtforms import StringField, SubmitField
-# from wtforms.validators import DataRequired
-# from sqlalchemy.inspection import inspect
-# from sqlalchemy import MetaData
+from sqlalchemy import MetaData
 from . import db
 import json
 

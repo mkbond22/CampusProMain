@@ -19,4 +19,9 @@ FLASK COMMANDS:
     py -m flask --app main db migrate
 ~Run upgrade/downgrade
     py -m flask --app main db upgrade
+
+ADDING DB OBJECTS FROM VS TERMINAL:
+
+>py
+>from website.models import User, Course
 """
