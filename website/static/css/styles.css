@@ -5,7 +5,7 @@
     background-image: linear-gradient(55deg, #3F51B5, #2E8540, #FF6600);
   }
   l1:hover, a:hover {
-    font-size: 150%;
+    font-size: 125%;
     font-family: cursive;
     font-weight: bold;
     font-stretch: extra-condensed;
@@ -194,7 +194,7 @@
     display: inline-block;
     font-size: 18px;
     /* margin: 4px 2px; */
-    margin-left: 100px;
+    margin-left: 5%;
     transition-duration: 0.4s;
     cursor: pointer;
   }

@@ -40,16 +40,48 @@ def delete_course():
     return jsonify({})
 
 
-@views.route('/user-profile/')
+@views.route('/user-profile/', methods=['GET', 'POST'])
 @login_required
 def user_profile():
     return render_template("user_profile.html", current_user=current_user)
 
 
-@views.route('/faculty-directory/')
+@views.route('/faculty-directory/', methods=['GET', 'POST'])
 @login_required
 def faculty_directory():
-    return render_template("faculty_directory.html", current_user=current_user)
+    id = current_user.id
+    user = User.query.filter(User.id == id).first()
+
+    course = Course.query.filter(Course.id == 1).first()
+
+
+    users = User.query.all()
+    return render_template("faculty_directory.html", users=users, current_user=current_user)
+
+
+@views.route('/create-course', methods=['GET', 'POST'])
+@login_required
+def add_course():
+    if request.method == 'POST':
+        course_name = request.form.get('')
+        course_abbr = request.form.get('')
+        section = request.form.get('')
+        course_code = (f"{course_abbr}-{section}").upper()
+        teacher = request.form.get('')
+        year = request.form.get('')
+        total_grade = None
+
+        course = Course.query.filter(Course.course_code == course_code)
+        if course:
+            flash('Course already exists.', category='error')
+        else:
+            created_course = Course(course_name=course_name, course_abbr=course_abbr, section=section, 
+                                    course_code=course_code, teacher=teacher, year=year, total_grade=total_grade)
+            flash('Account created! Welcome New Student!', category='success')
+            # db.session.add(created_course)
+            # db.session.commit()
+            return redirect(url_for('views.admin_manage_courses'))
+    return redirect(url_for('views.admin_manage_courses'))
 
 
 ################################     Student Pages     ################################
@@ -143,7 +175,7 @@ def admin_dash():
             
 
 
-@views.route('/admin/manage_users')
+@views.route('/admin/manage_users', methods=['GET', 'POST'])
 @login_required
 def admin_manage_users():
 
@@ -164,11 +196,14 @@ def admin_manage_users():
     return render_template("admin_manage_users.html", current_user=current_user, users=users, course=course, enrolled_courses=enrolled_courses, enrolled_students=enrolled_students)
 
 
-@views.route('/admin/manage_courses')
+@views.route('/admin/manage_courses', methods=['GET', 'POST'])
 @login_required
 def admin_manage_courses():
+
     courses = Course.query.all()
-    return render_template("admin_manage_courses.html", current_user=current_user, courses=courses)
+    users = User.query.all()
+
+    return render_template("admin_manage_courses.html", users=users, current_user=current_user, courses=courses)
 
 
 ################################     Faculty Pages     ################################
@@ -178,13 +213,13 @@ def faculty():
     return render_template("_template_faculty.html", current_user=current_user)
 
 
-@views.route('/faculty/teacher-dash')
+@views.route('/faculty/teacher-dash', methods=['GET', 'POST'])
 @login_required
 def faculty_dash():
     return render_template("teach_dashboard.html", current_user=current_user)
 
 
-@views.route('/faculty/teacher-courses')
+@views.route('/faculty/teacher-courses', methods=['GET', 'POST'])
 @login_required
 def faculty_courses():
     return render_template("teach_courses.html", current_user=current_user)

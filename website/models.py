@@ -109,7 +109,7 @@ Will need to create a relationship database
 A student should have a relationship with a course
    -> Each
 
-"""
+""" 
 class Course(db.Model):
    id = db.Column(db.Integer, primary_key=True)
    course_name = db.Column(db.String(50))

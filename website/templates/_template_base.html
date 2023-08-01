@@ -63,10 +63,19 @@
                     <a class="nav-link" href="#" style="color: #ffffff;">Reporting</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: #ffffff;">Registration</a>
-                  </li>
-                  <li class="nav-item">
                     <a class="nav-link" href="#" style="color: #ffffff;">Messages</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" style="color: #ffffff;" 
+                      id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" 
+                      aria-expanded="false">
+                      Resources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/student/course-register">Registration</a>
+                      <a class="dropdown-item" href="#">Email</a>
+                      <a class="dropdown-item" href="/faculty-directory/">Faculty Directory</a>
+                    </div>
                   </li>
                 </ul>
                 <div class="container2" style="display: flex; justify-content: flex-end;">
@@ -282,7 +291,16 @@
     src="{{ url_for('static', filename='index.js')}}"
   </script>
 
+<!-- XML REQUEST TO RENDER HTML -->
+
+
   {% block javascript %}
+  <script>
+    type="text/javascript"
+    src="{{ url_for('static', filename='index.js')}}"
+  </script>
+
+
   <script type="text/javascript">
     function deleteNote(noteId) {
       fetch("/delete-note", {

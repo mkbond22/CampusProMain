@@ -9,6 +9,32 @@
 </p>
 <h2 class="divider gradient"></h2>
 
+<div class="container3">
+  <h4 style="background-color: aqua;">Teachers</h4>
+  {% for user in users %}
+    {% if user.permissions == 2 %}
+      <ul style="list-style-type: none;">
+          <li style="color: #323232; font-size: 30px;">
+            <b>Name:</b> {{user.first_name}} {{user.last_name}} 
+            <b>Email:</b> {{user.email}}
+          </li>
+      </ul>
+    {% endif %}
+  {% endfor %}
+  <h4 style="background-color: aqua;">Administrators</h4>
+  {% for user in users %}
+    {% if user.permissions == 0 %}
+      <ul style="list-style-type: none;">
+          <li style="color: #323232; font-size: 30px;">
+            <b>Name:</b> {{user.first_name}} {{user.last_name}} 
+            <b>Email:</b> {{user.email}}
+          </li>
+      </ul>
+    {% endif %}
+  {% endfor %}
+</div>
+<br>
+
 <!-- Temporary card, DELETE WHEN FUNCTIONAL -->
 <div class="container">
   <h3 class="page-subtitle" style="color: red;">Temporary card, DELETE WHEN FUNCTIONAL</h3>

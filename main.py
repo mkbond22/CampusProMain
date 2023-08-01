@@ -22,6 +22,6 @@ FLASK COMMANDS:
 
 ADDING DB OBJECTS FROM VS TERMINAL:
 
->py
->from website.models import User, Course
+>>py
+>>from website.models import User, Course
 """
