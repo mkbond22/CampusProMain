@@ -54,22 +54,21 @@ def create_app():
     with app.app_context():
 
 
-        userID = 3
-        
-        user = User.query.filter(User.id == userID).first()
-        course = Course.query.filter(Course.teacher_id == userID).first()
-        courseID = course.id
-        courseCode = course.course_code
+        # userID = 3
+        # user = User.query.filter(User.id == userID).first()
+        # course = Course.query.filter(Course.teacher_id == userID).first()
+        # courseID = course.id
+        # courseCode = course.course_code
 
         # user.current_courses.append(course)
 
-        print()
-        print("init Course:",course)
-        print("init CourseID:",courseID)
-        print("init CourseCode:",courseCode)
-        print("init course.enrolled_students:",course.enrolled_students)
+        # print()
+        # print("init Course:",course)
+        # print("init CourseID:",courseID)
+        # print("init CourseCode:",courseCode)
+        # print("init course.enrolled_students:",course.enrolled_students)
 
-        print(user.current_courses)
+        # print(user.current_courses)
 
         """
         QUERY TO LOOP OVER THE USERS IN A DATABASE AND RETURN THE NAMES

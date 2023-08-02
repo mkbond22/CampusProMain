@@ -59,8 +59,6 @@ def faculty_directory():
 @views.route('/create-course', methods=['GET', 'POST'])
 @login_required
 def add_course():
-    print("add_course called.")
-    print()
     return redirect(url_for('views.admin_manage_courses'))
 
 
@@ -69,9 +67,6 @@ def add_course():
 def course_homepage(course):
     user = User.query.filter(User.id == current_user.id).first()
     courseHome = Course.query.filter(Course.teacher_id == user.id).first()
-    for enrolled_student in range(len(courseHome.enrolled_students)):
-            print(courseHome.enrolled_students[enrolled_student])
-    print(f"Students enrolled in {user.first_name} {user.last_name}'s class: ", courseHome.enrolled_students)
 
     enrolledStudents = courseHome.enrolled_students
 
@@ -266,6 +261,19 @@ def faculty_courses():
         return redirect(url_for('views.course_homepage', course=viewCourse))
     
     return render_template("teach_courses.html", current_user=current_user, courses=courses)
+
+
+@views.route('/faculty/teacher/create-assignment', methods=['GET', 'POST'])
+@login_required
+def faculty_create_assignment():
+    user = User.query.filter(User.id == current_user.id).first()
+    courses = Course.query.filter(Course.section_teacher == user).all()
+
+    if request.method == 'POST':
+        viewCourse = request.form['view-course']
+        return redirect(url_for('views.course_homepage', course=viewCourse))
+    
+    return render_template("teach_create_asmnt.html", current_user=current_user, courses=courses)
 
 
 ################################     Parent/Guardian Pages     ################################

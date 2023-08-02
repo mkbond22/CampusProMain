@@ -12,33 +12,31 @@
 <div class="px=4 d-flex justify-content-center">
   <h3>Course Sections</h3>
   <button 
-    class="button register-button" 
-    style="background-color: #fd7e14; padding: auto;"
+    class="button button-register border-dark" 
+    style="background-color: #fd7e14; margin: auto;"
     type="button" 
-    id="create-assignment" 
-    data-toggle="">
+    id="create_crs_btn" 
+    name="create_crs_btn"
+    onclick="show_create_assignment()">
     Create Assignment
   </button>
   <button 
-    class="button register-button" 
-    style="background-color: #fd7e14; padding: auto;"
+    class="button button-register border-dark" 
+    style="background-color: #fd7e14; margin: auto;"
     type="button" 
-    id="create-announcement" 
-    data-toggle="">
-    Create Announcement
+    id="create_crs_btn" 
+    name="create_crs_btn"
+    onclick="show_create_announcement()">
+    Post Announcement
   </button>
 </div>
-
 <br>
-
 <div class="container-template">
   {% for course in courses %}
-    <div class="row">
       <!-- TEXT CARD WITH TITLE, SUBTITLE, AND LINK -->
       <!-- WIDTH SPECIFIED ""style="width: 18rem;"" -->
-      <div class="col-lg-6 mb-4">
         <form method="POST">
-          <div class="card" style="max-width: 75%;">
+          <div class="card border-dark" style="padding: 1% 5%;">
             <div class="card-body">
               <h5 class="card-title"><b>{{course.course_abbr}}:</b> {{course.course_name}}</h5>
               <h6 class="card-subtitle mb-2 text-muted" style="text-transform: capitalize;">Section {{course.section}}</h6>
@@ -56,10 +54,103 @@
             </div>
           </div>
         </form>
-      </div>  
-    </div>
+        <br>
   {% endfor %}
 </div>
+<br>
+<div class="container-template border-dark" style="display: none;" id="create-assn-form">
+  <div class="title"><h3>Create Assignment</h3></div>
+  <div class="content">
+    <form method="POST">
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Assignment Title</span>
+          <input type="text" 
+            placeholder="Please Enter Title" 
+            id="assignmentName"
+            name="assignmentName"
+            required>
+        </div>
+        <div class="input-box">
+          <span class="details">Due Date</span>
+          <input type="date" 
+            id="dueDate"
+            name="dueDate"
+            required>
+        </div>
+        <div class="input-box">
+          <span class="details">Points Possible</span>
+          <input type="text" 
+            placeholder="100" 
+            id="grade"
+            name="grade"
+            required>
+        </div>
+        <div class="form-group">
+          <span class="details">Assignment Type</span>
+          <!-- <label for="state" class="col-sm-2 control-label">Teacher</label> -->
+            <select class="form-control" id="assn-type" name="assn-type">
+                  <option value="None"> -- </option>
+                  <option value='Exam'>Exam</option>
+                  <option value='Homework'>Homework</option>
+                  <option value='Quiz'>Quiz</option>
+                  <option value='Discussion'>Discussion</option>
+            </select>
+        </div>
+      </div>
+      <div class="button button-register" 
+        style="background-color: #fd7e14; 
+        margin: auto;">
+        <input type="submit" value="Create">
+      </div>
+    </form>
+  </div>
+</div>
+<br>
+<div class="container-template border-dark" style="display: none; padding: auto;" id="create-annc-form">
+  <div class="title"><h3>Create Announcement</h3></div>
+  <div class="content">
+    <form method="POST">
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Announcement Title</span>
+          <input type="text" 
+            placeholder="Please Enter Title" 
+            id="assignmentName"
+            name="assignmentName"
+            required>
+        </div>
+        <div class="input-box">
+          <span class="details">Message Content</span>
+          <textarea id="grade" 
+            name="grade" 
+            rows="4" 
+            cols="50"
+            required>
+            At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+          </textarea>
+        </div>
+      </div>
+      <div class="button button-register" 
+        style="background-color: #fd7e14; 
+        margin: auto;">
+        <input type="submit" value="Post">
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<script>
+  function show_create_assignment(){
+    $('#create-assn-form').show();
+  };
+
+  function show_create_announcement(){
+    $('#create-annc-form').show();
+  };
+</script>
+
 
 {% endblock %}
 

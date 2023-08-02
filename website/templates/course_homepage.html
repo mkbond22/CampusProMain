@@ -10,6 +10,7 @@
 </p>
 <h2 class="divider gradient"></h2>
 
+<div class="container-template">
   {% if current_user.permissions == 2 or 0 %}
     <h4 style="color: red;">Display Students in the class</h4>
     <br>
@@ -24,5 +25,36 @@
       </ul>
     </div>
   {% endif %}
+</div>
+<br>
+<div class="container-template">
+  <div class="card border-dark mb-2" style="padding: 1% 5%;">
+    <h5 class="card-header text-success">Week 1</h5>
+    <div class="card-body">
+      <h5 class="card-title">Syllabus</h5>
+      <h5 class="card-title">Quiz 1</h5>
+    </div>
+  </div>
+</div>
+<div class="container-template">
+  <div class="card border-dark mb-2" style="padding: 1% 5%;">
+    <h5 class="card-header text-success">Week 2</h5>
+    <div class="card-body">
+      <h5 class="card-title">Assign Groups</h5>
+      <h5 class="card-title">Choose Project</h5>
+    </div>
+  </div>
+</div>
+<div class="container-template">
+  <div class="card border-dark mb-2" style="padding: 1% 5%;">
+    <h5 class="card-header text-success">Week 3</h5>
+    <div class="card-body">
+      <h5 class="card-title">Read Chapter 2</h5>
+      <h5 class="card-title">Chapter Homework</h5>
+      <h5 class="card-title">Quiz 2</h5>
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}
