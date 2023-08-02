@@ -84,6 +84,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(20), nullable=False)
     permissions = db.Column(db.Integer, None)
     teacher_section = db.relationship('Course', backref='section_teacher')
+    #CREATES A RELATIONSHIP WITH COURSE TABLE -- WE ONLY USE THIS WHEN AN ADMIN CREATES A CLASS
+    #'section_teacher' WILL BE ADDED TO THE COURSE TABLE TO LINK A TEACHER TO THE CLASS SECTION THEY ARE TEACHING
     current_courses = db.relationship('Course', secondary=user_course, backref='enrolled_students')  # When a class is added, this field will store the Courses.id
 
 
@@ -116,6 +118,7 @@ class Course(db.Model):
    course_abbr = db.Column(db.String(10))
    section = db.Column(db.String)                          # SUFFIX TO BE JOINED WITH COURSE_ABBR (A, B, C)
    course_code = db.Column(db.String(20), unique=True)     # Unique value in an f-string -- "course_abbr-section"
+   seats = db.Column(db.Integer)
    teacher = db.Column(db.String(50))
    year = db.Column(db.String(20)) # EX. 2023-2024 SINCE SCHOOL YEAR GOES FROM AUGUST-MAY
    total_grade = db.Column(db.String(5), nullable=True)    # Will need some logic to calculate(get values for each User.Assignments.grade / number of assignmnets)

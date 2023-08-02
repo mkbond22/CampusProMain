@@ -1,0 +1,28 @@
+
+{% extends "_template_base.html" %}{% block title %}Course Homepage{% endblock %}
+
+{% block content %}
+
+<br>
+<h1 class="student-title">{{courseHome.course_name}}</h1>
+<p class="h4 student-subtitle" style="text-transform: capitalize;">
+  Section {{courseHome.section}}
+</p>
+<h2 class="divider gradient"></h2>
+
+  {% if current_user.permissions == 2 or 0 %}
+    <h4 style="color: red;">Display Students in the class</h4>
+    <br>
+    <div class="container3">
+      <h4 style="background-color: aqua;">{{current_user.first_name}}'s Current Enrolled Classes</h4>
+      <ul style="list-style-type: none;">
+        {% for student in enrolledStudents %}
+          <li style="color: #323232; font-size: 30px;"><b>Name:</b> {{student.first_name}} {{student.last_name}} <b style="margin-left: 5%;"> StudentID:</b> {{student.id}}
+          <button class="button button-register" style="margin-left: 5%;">View</button>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+{% endblock %}

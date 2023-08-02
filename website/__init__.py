@@ -22,7 +22,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date
 from flask_migrate import Migrate
 from os import path
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 #import mysql.connector
 
 # new_db = mysql.connector.connect(host="localhost", user="root", passwd="$C0de1sco0L!", database="testdatabase")
@@ -53,20 +53,23 @@ def create_app():
 
     with app.app_context():
 
-        # course = Course.query.filter(Course.id == 4).first()
-        # courseID = course.id
-        # courseCode = course.course_code
 
-        # users = User.query.filter(User.permissions == 0).all()
-        # print(users)
+        userID = 3
+        
+        user = User.query.filter(User.id == userID).first()
+        course = Course.query.filter(Course.teacher_id == userID).first()
+        courseID = course.id
+        courseCode = course.course_code
+
         # user.current_courses.append(course)
 
-        # print("Course:",course)
-        # print("CourseID:",courseID)
-        # print("CourseCode:",courseCode)
-        # print("Students:",course.enrolled_students)
+        print()
+        print("init Course:",course)
+        print("init CourseID:",courseID)
+        print("init CourseCode:",courseCode)
+        print("init course.enrolled_students:",course.enrolled_students)
 
-        # print(user.current_courses)
+        print(user.current_courses)
 
         """
         QUERY TO LOOP OVER THE USERS IN A DATABASE AND RETURN THE NAMES

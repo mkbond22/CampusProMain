@@ -1,5 +1,5 @@
 
-{% extends "_template_base.html" %}{% block title %}Manage Users{% endblock %}
+{% extends "_template_base.html" %}{% block title %}Manage Courses{% endblock %}
 
 {% block content %}
 
@@ -49,6 +49,7 @@
     style="background-color: #fd7e14; margin: auto;"
     type="button" 
     id="create_crs_btn" 
+    name="create_crs_btn"
     onclick="show_create_course()"
     aria-haspopup="true" 
     aria-expanded="false">
@@ -57,33 +58,49 @@
 </div>
 <br>
 <div class="container" style="display: none;" id="create-course-form">
-  <div class="title">Registration</div>
+  <div class="title"><h3>Registration</h3></div>
   <div class="content">
-    <form action="#">
+    <form method="POST">
       <div class="user-details">
         <div class="input-box">
           <span class="details">Course Name</span>
-          <input type="text" placeholder="Ex: American History" required>
+          <input type="text" 
+            placeholder="Ex: American History" 
+            id="courseName"
+            name="courseName"
+            required>
         </div>
         <div class="input-box">
           <span class="details">Course Abbreviation</span>
-          <input type="text" placeholder="Enter your username" required>
+          <input type="text" 
+            placeholder="Ex: FRHS" 
+            id="courseAbbr"
+            name="courseAbbr"
+            required>
         </div>
         <div class="input-box">
           <span class="details">Course Section</span>
-          <input type="text" placeholder="Enter your email" required>
+          <input type="text" 
+            placeholder="Ex: 'C'" 
+            id="courseSection"
+            name="courseSection"
+            required>
         </div>
         <div class="input-box">
-          <span class="details">Course Code</span>
-          <input type="text" placeholder="Enter your number" required>
-        </div>
-        <div class="input-box">
-          <span class="details">Teacher</span>
-          <input type="text" placeholder="Enter your password" required>
+          <span class="details">Seats Available</span>
+          <input type="text" 
+            placeholder="Ex: 30" 
+            id="openSeats"
+            name="openSeats"
+            required>
         </div>
         <div class="input-box">
           <span class="details">Academic Year</span>
-          <input type="text" placeholder="Confirm your password" required>
+          <input type="text" 
+            placeholder="Ex: 2023-2024" 
+            id="academicYear"
+            name="academicYear"
+            required>
         </div>
         <div class="form-group">
           <span class="details">Teacher</span>
@@ -92,7 +109,7 @@
               <option value="None"> -- </option>
               {% for user in users %}
                 {% if user.permissions == 2 %}
-                  <option value="{{user}}">{{user.first_name}} {{user.last_name}}</option>
+                  <option value='{{user.id}}'>{{user.first_name}} {{user.last_name}}</option>
                 {% endif %}
               {% endfor %}
             </select>
@@ -113,3 +130,4 @@
 
 {% endblock %}
 
+ 

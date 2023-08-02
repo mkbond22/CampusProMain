@@ -25,7 +25,6 @@
           <th style="width: 50px" scope="col">Password</th>
           <th scope="col">Phone Number</th>
           <th scope="col">User Permissions</th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -42,9 +41,6 @@
             <td style="width: 50px; overflow-wrap: break-word;"><h6>{{user.password}}</h6></td>
             <td><h6></h6>{{user.phone_number}}</th>
             <td class="px-0"><h6>{{user.permissions}}</h6></td>
-            <td style="color: #fd7e14;">
-              <a href="/admin/dash" style="color: #fd7e14;"><span aria-hidden="true"><h2>&#10253;</h2></span></a> <!-- "more" in braille -->
-            </td>
           </tr>
           {% endfor %}
       </tbody>

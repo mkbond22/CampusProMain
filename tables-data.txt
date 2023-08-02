@@ -81,17 +81,17 @@ user2 = User(first_name="Megan", last_name="Bond", address="1234 Megan's Lane", 
 
 user3 = User(first_name="Jim", last_name="Beam", address="555 Jim Avenue", city="Smalltown", zip_code=19091, state="AZ", email="j.beam@cpro.edu", 
                   phone_number=8593751289, password=generate_password_hash("pass456", method='sha256'), permissions=1)
-
 user4 = User(first_name="Mary", last_name="Poppins", address="11 Umbrella Street", city="Poppinsville", zip_code=24923, state="MN", email="m.poppins@cpro.edu", 
                   phone_number=5734814889, password=generate_password_hash("456pass", method='sha256'), permissions=2)
-
 user5 = User(first_name="Isaac", last_name="Newton", address="123 Gravity Street", city="ScienceVille", zip_code=65894, state="NJ", email="i.newton@cpro.edu", 
                   phone_number=8593705989, password=generate_password_hash("3pass21", method='sha256'), permissions=3)
+user6 = User(first_name="Gwen", last_name="Stacey", address="1 butt lane", city="Smalltown", zip_code=19091, state="AZ", email="g.stacey@cpro.edu", 
+                  phone_number=5736093383, password=generate_password_hash("p456ass", method='sha256'), permissions=1)
+user7 = User(first_name="Joe", last_name="Mama", address="3 main street", city="nowhereville", zip_code=19091, state="AZ", email="j.mama@cpro.edu", 
+                  phone_number=8593215609, password=generate_password_hash("pa456ss", method='sha256'), permissions=1)
+user8 = User(first_name="Shawn", last_name="Knight", address="5 Long Road", city="whoville", zip_code=12332, state="AZ", email="s.knight@cpro.edu", 
+                  phone_number=859458989, password=generate_password_hash("45pass6", method='sha256'), permissions=1)
 db.session.add(user1)
-db.session.add(user2)
-db.session.add(user3)
-db.session.add(user4)
-db.session.add(user5)
 db.session.commit()
 
 
@@ -115,35 +115,25 @@ class Course(db.Model):
 
 ----RUN THIS TO ADD COURSES:
 
-        abbr = "FREN"
-        sec = "C"
-        courseCode = (f"{abbr}-{sec}").upper()
+      teacher = User.query.filter(User.permissions == 2).first()
+      teacher_name = (f"{teacher.first_name} {teacher.last_name}")
+      abbr = "FREN"
+      sec = "C"
+      courseCode = (f"{abbr}-{sec}").upper()
 
-        course1 = Course(course_name="Algebra I", course_abbr="FRMA", 
-                         section="A", course_code= courseCode, 
-                         teacher="Mary Poppins", year="2023-2024", total_grade=None)
-        course2 = Course(course_name="Algebra I", course_abbr="FRMA",
-                       section="B", course_code= courseCode, 
-                       teacher="Carl Gauss", year="2023-2024", total_grade=None)
-        course3 = Course(course_name="Geometry", course_abbr="SOMA", 
-                       section="A", course_code= courseCode, 
-                       teacher="Carly Nickles", year="2023-2024", total_grade=None)
-        course4 = Course(course_name="Trigonometry", course_abbr="JRMA", 
-                       section="A", course_code= courseCode, 
-                       teacher="Mary Jane", year="2023-2024", total_grade=None)
-        course5 = Course(course_name="Calculus I", course_abbr="SRMA", 
-                       section="A", course_code= courseCode, 
-                       teacher="Samos Pythagoras", year="2023-2024", total_grade=None)
-        course6 = Course(course_name="English I", course_abbr="FREN", 
-                       section="C", course_code= courseCode, 
-                       teacher="George Orwell", year="2023-2024", total_grade=None)
-        db.session.add(course1)
-        db.session.add(course2)
-        db.session.add(course3)
-        db.session.add(course4)
-        db.session.add(course5)
-        db.session.add(course6)
-        db.session.commit()
+      course1 = Course(course_name="Algebra I", course_abbr=abbr, section=sec, course_code= courseCode, 
+                         seats=30, teacher="Mary Poppins", year="2023-2024", total_grade=None, 
+                         section_teacher=teacher)
+      course2 = Course(course_name="Algebra I", course_abbr=abbr, section=sec, course_code= courseCode, 
+                        seats=25, teacher="Mary Poppins", year="2023-2024", total_grade=None, 
+                        section_teacher=teacher)
+      course3 = Course(course_name='Freshman History', course_abbr='FRHS', section='-A', 
+                        course_code='FRHS-A', seats=30, teacher=teacher_name, year='2023-2024', 
+                        total_grade=None, section_teacher=teacher)
+
+      db.session.add(course1)
+      db.session.add(course2)
+      db.session.commit()
 
 ----WHEN CREATING THE COURSE, WE NEED TO ADD THE TEACHER RELATIONSHIP = 'section_teacher=user.id'
       ~ THE 'TEACHER' COLUMN SHOULD BE THE RELATED TEACHER'S NAME = 'user.first_name user.last_name'

@@ -15,64 +15,51 @@
     class="button register-button" 
     style="background-color: #fd7e14; padding: auto;"
     type="button" 
-    id="section_select" 
-    data-toggle="" 
-    aria-haspopup="true" 
-    aria-expanded="false">
+    id="create-assignment" 
+    data-toggle="">
     Create Assignment
+  </button>
+  <button 
+    class="button register-button" 
+    style="background-color: #fd7e14; padding: auto;"
+    type="button" 
+    id="create-announcement" 
+    data-toggle="">
+    Create Announcement
   </button>
 </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 mb-4">
-        <!-- IMAGE CARD WITH TEXT, LINK, AND BUTTON -->
-        <div class="card">
-            <img class="card-img-top" src="" alt="">
+<br>
 
-            <div class="card-body">
-                <h5 class="card-title">BIO101</h5>
-                <p class="card-text">
-                    Some quick example text to build on 
-                    the card title and make up the bulk 
-                    of the card's content.
-                </p>
-
-                <a href="#" class="register-button">
-                    View Class
-                </a>
-                <a href="#" class="btn-md">
-                    <i class="far fa-heart"></i></a>
-            </div>
-        </div>
-    </div>
-    </div>
+<div class="container-template">
+  {% for course in courses %}
     <div class="row">
-      <!-- IMAGE CARD WITH ONLY TEXT -->
-      <div class="col-lg-6 mb-4">
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">MAT111</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-      </div>
       <!-- TEXT CARD WITH TITLE, SUBTITLE, AND LINK -->
       <!-- WIDTH SPECIFIED ""style="width: 18rem;"" -->
       <div class="col-lg-6 mb-4">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">ENG112</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+        <form method="POST">
+          <div class="card" style="max-width: 75%;">
+            <div class="card-body">
+              <h5 class="card-title"><b>{{course.course_abbr}}:</b> {{course.course_name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted" style="text-transform: capitalize;">Section {{course.section}}</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href='/course-homepage/<int:id>' class="card-link">View Class</a>
+              <button 
+                class="button button-register" 
+                style="background-color: #fd7e14; margin: auto; font-size: small;"
+                type="submit" 
+                id="view-course" 
+                name="view-course"
+                value="{{course.course_code}}">
+                View Course
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>  
     </div>
-  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}
 
